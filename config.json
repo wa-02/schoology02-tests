@@ -1,0 +1,14 @@
+{
+  "Trainer": {
+    "credentials": {
+      "username": "carledriss+01@gmail.com",
+      "password": "P@ssw0rd"
+    }
+  },
+  "Student": {
+    "credentials": {
+      "username": "",
+      "password": ""
+    }
+  }
+}
