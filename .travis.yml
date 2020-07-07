@@ -1,0 +1,17 @@
+sudo: required
+language: java
+jdk:
+  - openjdk8
+before_script:
+  - wget https://services.gradle.org/distributions/gradle-6.5-bin.zip
+  - unzip gradle-6.5-bin.zip
+  - export GRADLE_HOME=$PWD/gradle-6.5
+  - export PATH=$GRADLE_HOME/bin:$PATH
+script:
+  #  static code analysis
+  #  run unit test for automation framework
+  - gradle clean check
+
+  #  run bdd test
+  - gradle runFeatures
+
