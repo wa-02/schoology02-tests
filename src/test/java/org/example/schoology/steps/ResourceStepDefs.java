@@ -5,7 +5,6 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.example.core.AssertionGroup;
 import org.example.core.ScenarioContext;
-import org.example.core.ui.SharedDriver;
 import org.example.schoology.pages.EditAssessmentQuestions;
 import org.example.schoology.pages.Home;
 import org.example.schoology.pages.Resources;
@@ -14,6 +13,7 @@ import org.example.schoology.pages.MultipleChoiceQuestion;
 import org.example.schoology.pages.resources.AddQuestionBankResourcePopup;
 import org.example.schoology.pages.resources.AddTestQuizResourcePopup;
 import org.example.schoology.pages.resources.DeleteResourcePopup;
+import org.example.schoology.pages.resources.TestQuizTemplatePopup;
 import org.testng.asserts.Assertion;
 
 import java.util.Map;
@@ -26,13 +26,16 @@ public class ResourceStepDefs {
     private Resources resources;
     private EditAssessmentQuestions editAssessmentQuestions;
     private MultipleChoiceQuestion multipleChoiceQuestion;
+    private TestQuizTemplatePopup testQuizTemplatePopup;
     private final Assertion assertion;
 
-    public ResourceStepDefs(final SharedDriver sharedDriver, final AssertionGroup assertionGroup,
-                            final ScenarioContext context, final Resources resources, final Home home) {
+    public ResourceStepDefs(final AssertionGroup assertionGroup, final ScenarioContext context,
+                            final Resources resources, final Home home,
+                            final TestQuizTemplatePopup testQuizTemplatePopup) {
         assertion = assertionGroup.getAssertion();
         this.home = home;
         this.resources = resources;
+        this.testQuizTemplatePopup = testQuizTemplatePopup;
         this.context = context;
     }
 
@@ -78,7 +81,6 @@ public class ResourceStepDefs {
         multipleChoiceQuestion.addMultipleChoiceQuestion(datatable);
     }
 
-
     @Then("I should see a resource with name {string}")
     public void iShouldSeeAResourceWithName(final String resourceName) {
         assertion.assertTrue(resources.resourceItemExist(resourceName));
@@ -86,14 +88,22 @@ public class ResourceStepDefs {
 
     @Then("I comeback to resources page")
     public void iComebackToResourcesPage() {
-        multipleChoiceQuestion.backToResourcesPage();
+        editAssessmentQuestions.goToBackResources();
     }
 
-    @And("resource {string} has the question {string}")
-    public void resourceHasTheQuestion(final String resourceName, final String questionName) {
+    @And("resource {string} Assessment has the question {string}")
+    public void resourceAssessmentHasTheQuestion(final String resourceName, final String questionName) {
         resources.clickEditQuestionsQuizResource(resourceName);
         assertion.assertTrue(editAssessmentQuestions.questionItemExist(questionName));
 
     }
+
+    @And("resource {string} Template popup has the question {string}")
+    public void resourceTemplatePopupHasTheQuestion(final String resourceName, final String questionName) {
+      testQuizTemplatePopup  = resources.clickResourceItem(resourceName);
+      assertion.assertTrue(testQuizTemplatePopup.questionItemExist(questionName));
+      testQuizTemplatePopup.closeTestQuizTemplatePopup();
+    }
+
 }
 

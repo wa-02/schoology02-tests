@@ -37,4 +37,5 @@ public class ResourceHooks {
         DeleteResourcePopup deleteResourcePopup = resources.clickRemoveResource(context.getValue("ResourceNameKey"));
         deleteResourcePopup.clickDeleteButton();
     }
+
 }

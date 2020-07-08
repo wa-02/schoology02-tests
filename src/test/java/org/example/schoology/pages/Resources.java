@@ -4,6 +4,7 @@ import org.example.core.ui.AbstractPage;
 import org.example.schoology.pages.resources.AddQuestionBankResourcePopup;
 import org.example.schoology.pages.resources.AddTestQuizResourcePopup;
 import org.example.schoology.pages.resources.DeleteResourcePopup;
+import org.example.schoology.pages.resources.TestQuizTemplatePopup;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -21,11 +22,14 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 public class Resources extends AbstractPage {
     public static final String ADD_RESOURCE_ACTIONS_BUTTON = "//div[@id='toolbar-add']/child::div[@class='action"
             + "-links-unfold ']";
-    public static final String RESOURCE_ACTIONS_BUTTON = "//a[text()='%s']/following::div[@class='action-links-unfold"
-            + " ']";
+    public static final String RESOURCE_ACTIONS_BUTTON = "//a[text()='%s']/parent::td/following-sibling::td"
+            + "/descendant::div[@class='action-links-unfold ']";
     public static final String RESOURCE_ACTIONS_DELETE_OPTION = "//a[text()='%s']/following::a[@class='action-delete "
             + " sExtlink-processed popups-processed']";
     public static final String RESOURCE_ITEM = "//a[text()='%s']";
+
+    public static final String EDIT_QUESTION_QUIZ = "//ul[@style='display: block;"
+            + "']/descendant::li/a[@class='action-edit-template-assessment-questions sExtlink-processed']";
 
     @FindBy(css = "#collection-add-question-bank")
     private WebElement addQuestionBankOption;
@@ -75,7 +79,6 @@ public class Resources extends AbstractPage {
 
     public String getMessage() {
         return action.getText(messages);
-        //return messages.getText();
     }
 
     public void waitForMessageContainerDisappear() {
@@ -89,7 +92,7 @@ public class Resources extends AbstractPage {
 
     public EditAssessmentQuestions clickEditQuestionsQuizResource(final String resourceName) {
         clickResourceActionsButton(resourceName);
-        action.click(editQuestionQuizResource);
+        action.click(By.xpath(EDIT_QUESTION_QUIZ));
         return new EditAssessmentQuestions();
     }
 
@@ -99,5 +102,11 @@ public class Resources extends AbstractPage {
         return new DeleteResourcePopup();
 
     }
+
+    public TestQuizTemplatePopup clickResourceItem(final String resourceName) {
+        action.click(By.xpath(String.format(RESOURCE_ITEM, resourceName)));
+        return new TestQuizTemplatePopup();
+    }
+
 
 }

@@ -15,4 +15,6 @@ Feature: Creation of Resources on schoology app
       | number_of_options | 3 |
     Then I comeback to resources page
     And I should see a resource with name "MT_Quiz Template"
-    And resource "MT_Quiz Template" has the question "What kind of animal is a feline"
+    And resource "MT_Quiz Template" Assessment has the question "What kind of animal is a feline"
+    And I comeback to resources page
+    And resource "MT_Quiz Template" Template popup has the question "What kind of animal is a feline"

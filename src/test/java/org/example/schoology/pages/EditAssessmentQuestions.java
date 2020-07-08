@@ -41,8 +41,8 @@ public class EditAssessmentQuestions extends AbstractPage {
         return new Resources();
     }
 
-    public boolean questionItemExist(final String questionItem) {
-        return action.isElementDisplayedOnScreen(By.xpath(String.format(QUESTION_BY_NAME, questionItem)));
+    public boolean questionItemExist(final String questionName) {
+        return action.isElementDisplayedOnScreen(By.xpath(String.format(QUESTION_BY_NAME, questionName)));
     }
 
 }
