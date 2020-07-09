@@ -1,7 +1,8 @@
 Feature: Courses
 
+  @deleteCourse @softAssert
   Scenario: Edit a course
-    Given I log in as "Trainer" user
+    Given I log in as "CourseInstructor01" user
     And I create a course with:
       | name    | SeleniumWebDriver |
       | section | New Section       |
