@@ -1,12 +1,32 @@
 {
-  "Trainer": {
-    "credentials": {
-      "username": "carledriss+01@gmail.com",
-      "password": "P@ssw0rd"
-    }
-  },
-  "Student": {
-    "credentials": {
+  "browser": "",
+  "language": "",
+  "credentials": {
+    "CourseInstructor01": {
+      "username": "",
+      "password": ""
+    },
+    "GroupInstructor01": {
+      "username": "",
+      "password": ""
+    },
+    "ResourceInstructor01": {
+      "username": "",
+      "password": ""
+    },
+    "ResourceInstructor02": {
+      "username": "",
+      "password": ""
+    },
+    "CourseStudent01": {
+      "username": "",
+      "password": ""
+    },
+    "GroupStudent01": {
+      "username": "",
+      "password": ""
+    },
+    "ResourceStudent01": {
       "username": "",
       "password": ""
     }
