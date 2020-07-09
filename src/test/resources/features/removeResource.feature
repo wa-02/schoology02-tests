@@ -2,7 +2,7 @@ Feature: Resources
 
   @softAssert
   Scenario: Remove a resource
-    Given I log in as "ResourceInstructor01" user
+    Given I log in as "ResourceInstructor02" user
     And I create an Add Question Bank resource with:
       | name | MT_TestQuestionBank |
       | description | MT-This_is_a_description_text |
