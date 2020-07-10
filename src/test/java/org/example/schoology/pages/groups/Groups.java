@@ -21,9 +21,6 @@ public class Groups extends ViewList {
     @FindBy(css = "ul[style=\"display: block;\"] .action-delete")
     private WebElement deleteGroup;
 
-    @FindBy(css = "iframe[id='edit-body_ifr']")
-    private WebElement updateBody;
-
     @FindBy(css = "input[id='edit-submit']")
     private WebElement postButton;
 
