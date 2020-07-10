@@ -3,6 +3,7 @@ package org.example.schoology.steps;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.cucumber.java.en.And;
 import org.example.core.AssertionGroup;
 import org.example.core.Environment;
 import org.example.core.ui.SharedDriver;
@@ -27,6 +28,11 @@ public class CommonStepDefs {
         Login login = new Login();
         home = login.loginAs(Environment.getInstance().getValue(String.format("credentials.%s.username", account)),
                 Environment.getInstance().getValue(String.format("credentials.%s.password", account)));
+    }
+
+    @And("I log out as {string} user")
+    public void iLogOutAsUser(final String account) {
+        home.clickLogout(account);
     }
 
     @When("I navigate to {string}")

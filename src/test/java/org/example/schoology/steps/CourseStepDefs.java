@@ -9,9 +9,7 @@ import org.example.core.ScenarioContext;
 import org.example.core.ui.SharedDriver;
 import org.example.schoology.pages.Home;
 import org.example.schoology.pages.SubMenu;
-import org.example.schoology.pages.courses.Courses;
-import org.example.schoology.pages.courses.CreateCoursePopup;
-import org.example.schoology.pages.courses.EditCoursePopup;
+import org.example.schoology.pages.courses.*;
 import org.testng.asserts.Assertion;
 
 public class CourseStepDefs {
@@ -19,6 +17,10 @@ public class CourseStepDefs {
     private final ScenarioContext context;
 
     private Courses courses;
+
+    private Course course;
+
+    private String accessCode;
 
     private final Home home;
 
@@ -38,8 +40,13 @@ public class CourseStepDefs {
         SubMenu subMenu = home.clickMenu(menu);
         subMenu.clickViewListLink(menu);
         CreateCoursePopup createCoursePopup = this.courses.clickCreateCourseButton();
-        createCoursePopup.create(datatable);
+        course = createCoursePopup.create(datatable);
         context.setContext("CourseKey", datatable.get("name"));
+    }
+
+    @And("I get the access code of course")
+    public void iGetTheAccessCodeOfCourse(){
+        accessCode = course.getAccessCode();
     }
 
     @And("I edit the {string} course with:")
@@ -51,6 +58,19 @@ public class CourseStepDefs {
     @And("I should see the {string} section on {string} course item")
     public void iShouldSeeTheSectionOnCourseItem(final String expectedSection, final String courseName) {
         assertion.assertEquals(expectedSection, courses.getSectionByName(courseName));
+    }
+
+    @And("I join a course with access code")
+    public void iJoinTheCourse() {
+        JoinACoursePopup joinACoursePopup = courses.clickJoinCourseButton();
+        courses = joinACoursePopup.joinCourse(accessCode);
+    }
+
+    @And("In {string} course I post {string} as {string}")
+    public void inCourseIPostAs(final String courseName, final String textUpdate, final String nameOption) {
+        Course course = courses.selectCourseByName(courseName);
+        Updates update = (Updates) course.selectCourseOption(nameOption);
+        update.postUpdate(textUpdate);
     }
 
 }

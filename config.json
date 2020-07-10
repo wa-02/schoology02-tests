@@ -1,34 +1,34 @@
 {
-  "browser": "",
-  "language": "",
+  "browser": "chrome",
+  "language": "en",
   "credentials": {
     "CourseInstructor01": {
-      "username": "",
-      "password": ""
+      "username": "mt_inst_course01@mailinator.com",
+      "password": "Control123"
     },
     "GroupInstructor01": {
-      "username": "",
-      "password": ""
+      "username": "mt_inst_group01@mailinator.com",
+      "password": "Control123"
     },
     "ResourceInstructor01": {
-      "username": "",
-      "password": ""
+      "username": "mt_inst_resource01@mailinator.com",
+      "password": "Control123"
     },
     "ResourceInstructor02": {
-      "username": "",
-      "password": ""
+      "username": "mt_inst_resource02@mailinator.com",
+      "password": "Control123"
     },
     "CourseStudent01": {
-      "username": "",
-      "password": ""
+      "username": "mt_est_course01@mailinator.com",
+      "password": "Control123"
     },
     "GroupStudent01": {
-      "username": "",
-      "password": ""
+      "username": "mt_est_group01@mailinator.com",
+      "password": "Control123"
     },
     "ResourceStudent01": {
-      "username": "",
-      "password": ""
+      "username": "mt_est_resource01@mailinator.com",
+      "password": "Control123"
     }
   }
 }
