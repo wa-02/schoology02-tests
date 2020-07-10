@@ -62,7 +62,7 @@ public class Groups extends ViewList {
         return new DeleteGroupPopup();
     }
 
-    public void clickGroupName(final String groupName){
+    public void clickGroupName(final String groupName) {
         driver.findElement(By.xpath(String.format(GROUP_BY_NAME, groupName))).click();
     }
 
