@@ -30,10 +30,9 @@ public class CommonStepDefs {
                 Environment.getInstance().getValue(String.format("credentials.%s.password", account)));
     }
 
-    @And("I log out as {string} user")
-    public void iLogOutAsUser(final String account) {
-        Home home = new Home();
-        home.clickLogout(account);
+    @And("I log out of user")
+    public void iLogOutOfUser() {
+        home.clickLogout();
     }
 
     @When("I navigate to {string}")

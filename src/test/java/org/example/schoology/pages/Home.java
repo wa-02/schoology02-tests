@@ -23,16 +23,16 @@ public class Home extends AbstractPage {
         return new Resources();
     }
 
-    public void displayAccountOptions(final String account) {
-        action.click(By.xpath(String.format("//*[text()='%s']", account)));
+    public void displayAccountOptions() {
+        action.click(By.cssSelector("[data-sgy-sitenav=\"header-my-account-menu\"]"));
     }
 
     public void selectAccountOption(final String option) {
         action.click(By.xpath(String.format("//a[text()='%s']", option)));
     }
 
-    public Login clickLogout(final String account) {
-        displayAccountOptions(account);
+    public Login clickLogout() {
+        displayAccountOptions();
         selectAccountOption("Logout");
         return new Login();
     }
