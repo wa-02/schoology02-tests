@@ -1,6 +1,6 @@
 {
-  "browser": "",
-  "language": "",
+  "browser": "chrome",
+  "language": "en",
   "credentials": {
     "CourseInstructor01": {
       "username": "",
