@@ -29,15 +29,11 @@ public class Home extends AbstractPage {
     }
 
     public void displayAccountOptions(final String account) {
-        WebElement accountOptionsDropdown = driver.findElement(By.xpath(String.format(XPATH_LOGOUT_USER,
-                account)));
-        accountOptionsDropdown.click();
+        action.click(By.xpath(String.format("//div[text()='%s']", account)));
     }
 
     public void selectAccountOption(final String option) {
-        WebElement accountOption = driver.findElement(By.xpath(String.format(XPATH_OPTION_USER,
-                option)));
-        accountOption.click();
+        action.click(By.xpath(String.format("//a[text()='%s']", option)));
     }
 
     public Login clickLogout(final String account) {
