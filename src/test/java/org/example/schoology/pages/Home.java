@@ -14,7 +14,7 @@ public class Home extends AbstractPage {
      * @return {@link SubMenu}
      */
 
-    public static final String XPATH_LOGOUT_USER = "//div[text()='%s']/ancestor::li//button";
+    public static final String XPATH_LOGOUT_USER = "//div[text()='%s']";
     public static final String XPATH_OPTION_USER = "//a[text()='%s']";
 
 
