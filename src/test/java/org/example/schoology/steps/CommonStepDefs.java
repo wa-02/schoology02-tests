@@ -32,6 +32,7 @@ public class CommonStepDefs {
 
     @And("I log out as {string} user")
     public void iLogOutAsUser(final String account) {
+        Home home = new Home();
         home.clickLogout(account);
     }
 

@@ -2,7 +2,6 @@ package org.example.schoology.pages;
 
 import org.example.core.ui.AbstractPage;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 
 public class Home extends AbstractPage {
 
@@ -13,10 +12,6 @@ public class Home extends AbstractPage {
      * @param menuName {courses or groups}
      * @return {@link SubMenu}
      */
-
-    public static final String XPATH_LOGOUT_USER = "//div[text()='%s']";
-    public static final String XPATH_OPTION_USER = "//a[text()='%s']";
-
 
     public SubMenu clickMenu(final String menuName) {
         action.click(By.xpath(String.format("//span[text()='%s']/parent::button", menuName)));
@@ -29,7 +24,7 @@ public class Home extends AbstractPage {
     }
 
     public void displayAccountOptions(final String account) {
-        action.click(By.xpath(String.format("//div[text()='%s']", account)));
+        action.click(By.xpath(String.format("//*[text()='%s']", account)));
     }
 
     public void selectAccountOption(final String option) {
