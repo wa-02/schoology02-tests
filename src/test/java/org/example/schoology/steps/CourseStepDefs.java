@@ -10,7 +10,12 @@ import org.example.core.ScenarioContext;
 import org.example.core.ui.SharedDriver;
 import org.example.schoology.pages.Home;
 import org.example.schoology.pages.SubMenu;
-import org.example.schoology.pages.courses.*;
+import org.example.schoology.pages.courses.Course;
+import org.example.schoology.pages.courses.Courses;
+import org.example.schoology.pages.courses.Updates;
+import org.example.schoology.pages.courses.CreateCoursePopup;
+import org.example.schoology.pages.courses.EditCoursePopup;
+import org.example.schoology.pages.courses.JoinACoursePopup;
 import org.testng.asserts.Assertion;
 
 public class CourseStepDefs {
