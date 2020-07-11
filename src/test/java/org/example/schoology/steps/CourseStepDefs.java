@@ -53,7 +53,7 @@ public class CourseStepDefs {
     }
 
     @And("I get the access code of course")
-    public void iGetTheAccessCodeOfCourse(){
+    public void iGetTheAccessCodeOfCourse() {
         accessCode = course.getAccessCode();
     }
 
