@@ -77,7 +77,7 @@ public class CourseStepDefs {
     }
 
     @Then("I should see the {string} in updates section")
-    public void iShouldSeeTheInUpdatesSection(final String expectedUpdate){
+    public void iShouldSeeTheInUpdatesSection(final String expectedUpdate) {
         assertion.assertEquals(expectedUpdate, update.getUpdate(expectedUpdate));
     }
 

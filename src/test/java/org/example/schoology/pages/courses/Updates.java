@@ -18,7 +18,7 @@ public class Updates extends AbstractPage {
 
     public static final String XPATH_UPDATE_TEXT = "//p[text()='%s']";
 
-    public void postUpdate(final String text){
+    public void postUpdate(final String text) {
         driver.switchTo().frame(frame);
         frameTextField.sendKeys(text);
         driver.switchTo().defaultContent();

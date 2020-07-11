@@ -68,7 +68,7 @@ public class Courses extends ViewList {
         return new JoinACoursePopup();
     }
 
-    public Course selectCourseByName(final String courseName){
+    public Course selectCourseByName(final String courseName) {
         driver.findElement(By.xpath(String.format(XPATH_SELECT_COURSE, courseName))).click();
         return new Course();
     }

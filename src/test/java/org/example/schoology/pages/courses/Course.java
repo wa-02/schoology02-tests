@@ -34,14 +34,14 @@ public class Course extends AbstractPage {
         return accessCode.getText();
     }
 
-    public Map <String, Object> allOptions() {
-        Map<String, Object> resources = new HashMap<String, Object>();
+    public Map < String, Object > allOptions() {
+        Map<String, Object> resources = new HashMap<>();
         resources.put("Updates", new Updates());
 
         return resources;
     }
 
-    public Object selectCourseOption(final String nameOption){
+    public Object selectCourseOption(final String nameOption) {
         WebElement courseOption = driver.findElement(By.xpath(String.format(XPATH_COURSE_OPTION, nameOption)));
         courseOption.click();
         return allOptions().get(nameOption);

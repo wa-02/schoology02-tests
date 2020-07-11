@@ -15,7 +15,7 @@ public class JoinACoursePopup extends AbstractPage {
         accessCodeTextField.sendKeys(code);
     }
 
-    public Courses joinCourse(final String code){
+    public Courses joinCourse(final String code) {
         setAccessCode(code);
         joinButton.click();
         return new Courses();

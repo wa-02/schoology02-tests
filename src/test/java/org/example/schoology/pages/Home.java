@@ -28,19 +28,19 @@ public class Home extends AbstractPage {
         return new Resources();
     }
 
-    public void displayAccountOptions(final String account){
+    public void displayAccountOptions(final String account) {
         WebElement accountOptionsDropdown = driver.findElement(By.xpath(String.format(XPATH_LOGOUT_USER,
                 account)));
         accountOptionsDropdown.click();
     }
 
-    public void selectAccountOption(final String option){
-        WebElement accountOption= driver.findElement(By.xpath(String.format(XPATH_OPTION_USER,
+    public void selectAccountOption(final String option) {
+        WebElement accountOption = driver.findElement(By.xpath(String.format(XPATH_OPTION_USER,
                 option)));
         accountOption.click();
     }
 
-    public Login clickLogout(final String account){
+    public Login clickLogout(final String account) {
         displayAccountOptions(account);
         selectAccountOption("Logout");
         return new Login();
