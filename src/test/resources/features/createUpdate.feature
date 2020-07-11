@@ -3,6 +3,7 @@
 
 Feature: Post an update
 
+  @deleteCourse
   Scenario: post an update as student in a course
     Given I log in as "CourseInstructor01" user
     And I create a course with:
@@ -16,3 +17,6 @@ Feature: Post an update
     When I navigate to "Courses"
     And I join a course with access code
     And In "Mat01" course I post "TestUpdate" as "Updates"
+    Then I should see the "TestUpdate" in updates section
+    And I log out as "Course Student01" user
+    And I log in as "CourseInstructor01" user

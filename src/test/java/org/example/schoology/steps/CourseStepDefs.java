@@ -3,6 +3,7 @@ package org.example.schoology.steps;
 import java.util.Map;
 
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Then;
 import org.example.core.AssertionGroup;
 import org.example.core.Internationalization;
 import org.example.core.ScenarioContext;
@@ -19,6 +20,8 @@ public class CourseStepDefs {
     private Courses courses;
 
     private Course course;
+
+    private Updates update;
 
     private String accessCode;
 
@@ -69,8 +72,13 @@ public class CourseStepDefs {
     @And("In {string} course I post {string} as {string}")
     public void inCourseIPostAs(final String courseName, final String textUpdate, final String nameOption) {
         Course course = courses.selectCourseByName(courseName);
-        Updates update = (Updates) course.selectCourseOption(nameOption);
+        update = (Updates) course.selectCourseOption(nameOption);
         update.postUpdate(textUpdate);
+    }
+
+    @Then("I should see the {string} in updates section")
+    public void iShouldSeeTheInUpdatesSection(final String expectedUpdate){
+        assertion.assertEquals(expectedUpdate, update.getUpdate(expectedUpdate));
     }
 
 }
