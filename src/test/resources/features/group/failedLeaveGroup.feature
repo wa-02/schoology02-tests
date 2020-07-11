@@ -1,7 +1,7 @@
 Feature: Group
 
   @deleteGroup
-  Scenario: Post update
+  Scenario: Failed message to leave the group
     Given I log in as "GroupInstructor01" user
     When I create a group with:
       | name        | SeleniumWebDriver |
@@ -9,7 +9,8 @@ Feature: Group
       | privacy     | School            |
       | access      | Invite Only       |
       | category    | Musical Groups    |
-    Then I post and update:
+    Then I select Leave This Group option
+    And I should see the a message:
       """
-      test post update in groups
+      Since you are a group admin, you cannot leave until you make at least one other member an admin.
       """

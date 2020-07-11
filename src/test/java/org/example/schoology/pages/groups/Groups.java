@@ -14,6 +14,10 @@ public class Groups extends ViewList {
     public static final String GROUP_BY_NAME = "//a[text()='%s']";
     public static final String POST_UPDATE = "//p[text()='%s']";
     public static final String UPDATE_BODY = "//body/p";
+    public static final String RESET_LINK = "//a[@class='action-regenerate-code popups-processed sExtlink-processed']";
+    public static final String MENU_ITEM = "//a[@role='menuitem' and contains(text(),'%s')]";
+    public static final String ADD_RESOURCE = "//span[contains(text(),'Add Resources')]";
+
 
     @FindBy(css = "a.create-group")
     private WebElement createGroupButton;
@@ -24,6 +28,8 @@ public class Groups extends ViewList {
     @FindBy(css = "input[id='edit-submit']")
     private WebElement postButton;
 
+    @FindBy(css = "span[class='enrollment-code']")
+    private WebElement accessCode;
 
     public CreateGroupPopup clickCreateGroupButton() {
         createGroupButton.click();
@@ -50,7 +56,6 @@ public class Groups extends ViewList {
         WebElement groupActionsButton = driver.findElement(By.xpath(String.format(GROUP_ACTIONS_BUTTON,
                 groupName)));
 
-        // Scroll
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].scrollIntoView();", groupActionsButton);
 
@@ -69,5 +74,42 @@ public class Groups extends ViewList {
         driver.switchTo().defaultContent();
         postButton.click();
         return driver.findElement(By.xpath(String.format(POST_UPDATE, postText))).getText();
+    }
+
+    public String saveAccessCode() {
+        return accessCode.getText();
+    }
+
+    public String resetAccessCode() {
+        driver.findElement(By.xpath(RESET_LINK)).click();
+        new ResetAccessCodePopup().resetAccessCode();
+        driver.navigate().refresh();
+        return accessCode.getText();
+    }
+
+    public void clickInMenuItem(String menuItem) {
+        driver.findElement(By.xpath(String.format(MENU_ITEM, menuItem))).click();
+    }
+
+    public CreateFolderPopup clickAddResource() {
+
+        WebElement groupActionsButton = driver.findElement(By.xpath(ADD_RESOURCE));
+        // Scroll
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView();", groupActionsButton);
+
+        wait.until(ExpectedConditions.visibilityOf(groupActionsButton));
+        groupActionsButton.click();
+        driver.findElement(By.xpath(String.format(GROUP_BY_NAME, "Add Folder"))).click();
+        return new CreateFolderPopup();
+
+    }
+
+    public String getResourcesByName(String folderName) {
+        return driver.findElement(By.xpath(String.format(GROUP_BY_NAME, folderName))).getText();
+    }
+
+    public void clickLeaveGroup() {
+        driver.findElement(By.xpath(String.format(GROUP_BY_NAME, "Leave this group"))).click();
     }
 }
