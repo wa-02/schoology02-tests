@@ -2,6 +2,7 @@ package org.example.schoology.pages.resources;
 
 import org.example.core.ui.AbstractPage;
 import org.example.schoology.pages.Step;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -19,6 +20,8 @@ import java.util.Map;
  * @since   2020-07-08
  */
 public abstract class AbstractResourcePopup extends AbstractPage {
+
+    public static final String ADD_FOLDER_COLOUR = "div[class='clickable s-js-color-select s-js-color-%s']";
 
     @FindBy(css = "#edit-title")
     private WebElement addQuestionBankNameTextField;
@@ -40,6 +43,16 @@ public abstract class AbstractResourcePopup extends AbstractPage {
 
     @FindBy(css = "form#s-library-collection-template-form input#edit-submit")
     protected WebElement addTestQuizSubmitButton;
+
+    @FindBy(css = "input[value='Create']")
+    private WebElement addFolderCreateButton;
+
+    @FindBy(css = "#edit-title")
+    private WebElement addFolderNameField;
+
+    @FindBy(css = ".mceContentBody")
+    private WebElement addFolderDescriptionTextField;
+
 
 
     public void setNameAddQuestionBank(final String name) {
@@ -90,4 +103,32 @@ public abstract class AbstractResourcePopup extends AbstractPage {
         addTestQuizMaxPointsTextField.clear();
         addTestQuizMaxPointsTextField.sendKeys(maxPoints);
     }
+
+    public void fillAddFolderForm(final Map<String, String> resourceMap) {
+        Map<String, Step> stepsMap = new HashMap<>();
+        stepsMap.put("name", () -> setNameAddFolder(resourceMap.get("name")));
+        stepsMap.put("description", () -> setDescriptionAddFolder(resourceMap.get("description")));
+        stepsMap.put("colour", () -> setColourToFolder(resourceMap.get("colour")));
+
+        for (String keyField : resourceMap.keySet()) {
+            stepsMap.get(keyField).execute();
+        }
+    }
+
+    private void setNameAddFolder(final String name) {
+        action.setValue(addFolderNameField, name);
+    }
+
+    private void setDescriptionAddFolder(final String description) {
+        driver.switchTo().frame("tinymce");
+        action.click(addFolderDescriptionTextField);
+        action.setValue(addFolderDescriptionTextField);
+        driver.switchTo().defaultContent();
+    }
+    private void setColourToFolder(final String colour) {
+        WebElement choiceColourFolder = driver.findElement(By.cssSelector(
+                String.format(ADD_FOLDER_COLOUR, colour)));
+        action.click(choiceColourFolder);
+    }
+
 }

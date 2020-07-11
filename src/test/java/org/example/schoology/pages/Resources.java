@@ -1,10 +1,7 @@
 package org.example.schoology.pages;
 
 import org.example.core.ui.AbstractPage;
-import org.example.schoology.pages.resources.AddQuestionBankResourcePopup;
-import org.example.schoology.pages.resources.AddTestQuizResourcePopup;
-import org.example.schoology.pages.resources.DeleteResourcePopup;
-import org.example.schoology.pages.resources.TestQuizTemplatePopup;
+import org.example.schoology.pages.resources.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -48,6 +45,10 @@ public class Resources extends AbstractPage {
 
     @FindBy(css = "#library-wrapper div.messages-container")
     private WebElement messageContainer;
+
+    @FindBy(css = "a[href*='/add_folder?']")
+    private WebElement addFolderOption;
+
 
 
     public void clickAddResourcesButton() {
@@ -106,6 +107,11 @@ public class Resources extends AbstractPage {
     public TestQuizTemplatePopup clickResourceItem(final String resourceName) {
         action.click(By.xpath(String.format(RESOURCE_ITEM, resourceName)));
         return new TestQuizTemplatePopup();
+    }
+    public AddFolderPopup clickAddFolderOption(){
+        action.click(addFolderOption);
+        return new AddFolderPopup();
+
     }
 
 

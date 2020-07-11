@@ -105,5 +105,11 @@ public class ResourceStepDefs {
       testQuizTemplatePopup.closeTestQuizTemplatePopup();
     }
 
+    @When("I create an Folder resource with:")
+    public void iCreateAnFolderResourceWith() {
+        resources.clickAddResourcesButton();
+        resources.
+
+    }
 }
 
