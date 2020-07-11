@@ -10,10 +10,12 @@ import org.example.schoology.pages.Home;
 import org.example.schoology.pages.Resources;
 import org.example.schoology.pages.SubMenu;
 import org.example.schoology.pages.MultipleChoiceQuestion;
+import org.example.schoology.pages.resources.EditFolderPopup;
+import org.example.schoology.pages.resources.AddFolderPopup;
 import org.example.schoology.pages.resources.AddQuestionBankResourcePopup;
-import org.example.schoology.pages.resources.AddTestQuizResourcePopup;
 import org.example.schoology.pages.resources.DeleteResourcePopup;
 import org.example.schoology.pages.resources.TestQuizTemplatePopup;
+import org.example.schoology.pages.resources.AddTestQuizResourcePopup;
 import org.testng.asserts.Assertion;
 
 import java.util.Map;
@@ -106,10 +108,25 @@ public class ResourceStepDefs {
     }
 
     @When("I create an Folder resource with:")
-    public void iCreateAnFolderResourceWith() {
-        resources.clickAddResourcesButton();
-        resources.
+    public void iCreateAnFolderResourceWith(final Map<String, String> datatable) {
+        resources = home.clickResourcesMenuOption();
+        AddFolderPopup addFolderPopup = resources.clickAddFolderOption();
+        addFolderPopup.addResource(datatable);
+        context.setContext("ResourceNameKey", datatable.get("name"));
+    }
 
+    @When("I edit the {string} resource with:")
+    public void iEditTheResourceWith(final String resourceName, final Map<String, String> datatable) {
+        resources = home.clickResourcesMenuOption();
+        EditFolderPopup editFolderPopup = resources.clickEditFolderOption(resourceName);
+        editFolderPopup.editResource(datatable);
+        context.setContext("ResourceNameKey", datatable.get("name"));
+
+    }
+
+    @And("I should see a resource with description {string}")
+    public void iShouldSeeAResourceWithDescription(final String resourceDescription) {
+        assertion.assertTrue(resources.resourceItemExist(resourceDescription));
     }
 }
 

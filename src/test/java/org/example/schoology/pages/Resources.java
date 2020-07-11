@@ -1,7 +1,12 @@
 package org.example.schoology.pages;
 
 import org.example.core.ui.AbstractPage;
-import org.example.schoology.pages.resources.*;
+import org.example.schoology.pages.resources.AddQuestionBankResourcePopup;
+import org.example.schoology.pages.resources.AddTestQuizResourcePopup;
+import org.example.schoology.pages.resources.DeleteResourcePopup;
+import org.example.schoology.pages.resources.TestQuizTemplatePopup;
+import org.example.schoology.pages.resources.AddFolderPopup;
+import org.example.schoology.pages.resources.EditFolderPopup;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -28,6 +33,9 @@ public class Resources extends AbstractPage {
     public static final String EDIT_QUESTION_QUIZ = "//ul[@style='display: block;"
             + "']/descendant::li/a[@class='action-edit-template-assessment-questions sExtlink-processed']";
 
+    public static final String RESOURCE_ACTIONS_EDIT = "//a[text()='%s']/following::a[@class='action-edit-template "
+            + "edit-popup folder sExtlink-processed popups-processed']";
+
     @FindBy(css = "#collection-add-question-bank")
     private WebElement addQuestionBankOption;
 
@@ -50,7 +58,6 @@ public class Resources extends AbstractPage {
     private WebElement addFolderOption;
 
 
-
     public void clickAddResourcesButton() {
         action.click(By.xpath(ADD_RESOURCE_ACTIONS_BUTTON));
     }
@@ -71,7 +78,6 @@ public class Resources extends AbstractPage {
         action.click(By.xpath(String.format(RESOURCE_ACTIONS_BUTTON, resourceName)));
         action.click(By.xpath(String.format(RESOURCE_ACTIONS_DELETE_OPTION, resourceName)));
         return new DeleteResourcePopup();
-
     }
 
     public boolean resourceItemExist(final String resourceName) {
@@ -108,10 +114,16 @@ public class Resources extends AbstractPage {
         action.click(By.xpath(String.format(RESOURCE_ITEM, resourceName)));
         return new TestQuizTemplatePopup();
     }
-    public AddFolderPopup clickAddFolderOption(){
+    public AddFolderPopup clickAddFolderOption() {
+        clickAddResourcesButton();
         action.click(addFolderOption);
         return new AddFolderPopup();
 
+    }
+    public EditFolderPopup clickEditFolderOption(final String folderName) {
+        action.click(By.xpath(String.format(RESOURCE_ACTIONS_BUTTON, folderName)));
+        action.click(By.xpath(String.format(RESOURCE_ACTIONS_EDIT, folderName)));
+        return new EditFolderPopup();
     }
 
 

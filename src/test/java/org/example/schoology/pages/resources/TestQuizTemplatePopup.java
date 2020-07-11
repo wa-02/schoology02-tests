@@ -26,8 +26,7 @@ public class TestQuizTemplatePopup extends AbstractResourcePopup {
         }
 
     public boolean questionItemExist(final String questionName) {
-        String locator = String.format(RESOURCE_ITEM_QUESTION, questionName);
-        return action.isElementDisplayedOnScreen(By.xpath(String.format(RESOURCE_ITEM_QUESTION, questionName)));
+         return action.isElementDisplayedOnScreen(By.xpath(String.format(RESOURCE_ITEM_QUESTION, questionName)));
 
     }
 

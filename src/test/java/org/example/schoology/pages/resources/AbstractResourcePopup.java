@@ -53,7 +53,8 @@ public abstract class AbstractResourcePopup extends AbstractPage {
     @FindBy(css = ".mceContentBody")
     private WebElement addFolderDescriptionTextField;
 
-
+    @FindBy(css = "input[class='form-text required edit-title']")
+    private WebElement editFolderNameField;
 
     public void setNameAddQuestionBank(final String name) {
         addQuestionBankNameTextField.sendKeys(name);
@@ -100,15 +101,14 @@ public abstract class AbstractResourcePopup extends AbstractPage {
     }
 
     private void setMaxPointsAddTestQuiz(final String maxPoints) {
-        addTestQuizMaxPointsTextField.clear();
-        addTestQuizMaxPointsTextField.sendKeys(maxPoints);
+        action.clearAndSetValue(addTestQuizMaxPointsTextField, maxPoints);
     }
 
     public void fillAddFolderForm(final Map<String, String> resourceMap) {
         Map<String, Step> stepsMap = new HashMap<>();
         stepsMap.put("name", () -> setNameAddFolder(resourceMap.get("name")));
-        stepsMap.put("description", () -> setDescriptionAddFolder(resourceMap.get("description")));
         stepsMap.put("colour", () -> setColourToFolder(resourceMap.get("colour")));
+        stepsMap.put("description", () -> setDescriptionFolder(resourceMap.get("description")));
 
         for (String keyField : resourceMap.keySet()) {
             stepsMap.get(keyField).execute();
@@ -116,19 +116,31 @@ public abstract class AbstractResourcePopup extends AbstractPage {
     }
 
     private void setNameAddFolder(final String name) {
-        action.setValue(addFolderNameField, name);
+        action.clearAndSetValue(addFolderNameField, name);
     }
 
-    private void setDescriptionAddFolder(final String description) {
-        driver.switchTo().frame("tinymce");
+    private void setDescriptionFolder(final String description) {
+        driver.switchTo().frame("edit-description_ifr");
         action.click(addFolderDescriptionTextField);
-        action.setValue(addFolderDescriptionTextField);
+        action.clearAndSetValue(addFolderDescriptionTextField, description);
         driver.switchTo().defaultContent();
     }
     private void setColourToFolder(final String colour) {
-        WebElement choiceColourFolder = driver.findElement(By.cssSelector(
-                String.format(ADD_FOLDER_COLOUR, colour)));
-        action.click(choiceColourFolder);
+        action.click(By.cssSelector(String.format(ADD_FOLDER_COLOUR, colour)));
+    }
+
+    public void fillEditFolderForm(final Map<String, String> resourceMap) {
+        Map<String, Step> stepsMap = new HashMap<>();
+        stepsMap.put("name", () -> setNameEditFolder(resourceMap.get("name")));
+        stepsMap.put("colour", () -> setColourToFolder(resourceMap.get("colour")));
+
+        for (String keyField : resourceMap.keySet()) {
+            stepsMap.get(keyField).execute();
+        }
+    }
+
+    private void setNameEditFolder(final String name) {
+        action.clearAndSetValue(editFolderNameField, name);
     }
 
 }
