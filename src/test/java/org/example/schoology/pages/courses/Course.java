@@ -37,6 +37,7 @@ public class Course extends AbstractPage {
     public Map<String, Object> allOptions() {
         Map<String, Object> resources = new HashMap<>();
         resources.put("Updates", new Updates());
+        resources.put("Members", new Members());
 
         return resources;
     }
