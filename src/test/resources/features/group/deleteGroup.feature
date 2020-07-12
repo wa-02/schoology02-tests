@@ -2,7 +2,7 @@ Feature: Group
 
   @deleteGroup
   Scenario: delete group
-    Given I log in as "ResourceInstructor02" user
+    Given I log in as "ResourceInstructor01" user
     When I create a group with:
       | name        | groupTest         |
       | description | Description       |
