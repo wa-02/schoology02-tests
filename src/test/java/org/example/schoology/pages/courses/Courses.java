@@ -64,7 +64,7 @@ public class Courses extends ViewList {
     }
 
     public JoinACoursePopup clickJoinCourseButton() {
-        joinCourseButton.click();
+        action.click(joinCourseButton);
         return new JoinACoursePopup();
     }
 
