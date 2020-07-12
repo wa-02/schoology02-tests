@@ -43,7 +43,7 @@ public class Resources extends AbstractPage {
     @FindBy(css = "a[class='action-delete  sExtlink-processed popups-processed']")
     private WebElement deleteQuizResource;
 
-    @FindBy(css = ".message-text")
+    @FindBy(css = ".messages .message-text")
     private WebElement messages;
 
     @FindBy(css = "#library-wrapper div.messages-container")
