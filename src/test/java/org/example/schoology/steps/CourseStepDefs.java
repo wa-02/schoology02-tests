@@ -10,12 +10,7 @@ import org.example.core.ScenarioContext;
 import org.example.core.ui.SharedDriver;
 import org.example.schoology.pages.Home;
 import org.example.schoology.pages.SubMenu;
-import org.example.schoology.pages.courses.Course;
-import org.example.schoology.pages.courses.Courses;
-import org.example.schoology.pages.courses.Updates;
-import org.example.schoology.pages.courses.CreateCoursePopup;
-import org.example.schoology.pages.courses.EditCoursePopup;
-import org.example.schoology.pages.courses.JoinACoursePopup;
+import org.example.schoology.pages.courses.*;
 import org.testng.asserts.Assertion;
 
 public class CourseStepDefs {
@@ -84,6 +79,15 @@ public class CourseStepDefs {
     @Then("I should see the {string} in updates section")
     public void iShouldSeeTheInUpdatesSection(final String expectedUpdate) {
         assertion.assertEquals(expectedUpdate, update.getUpdate(expectedUpdate));
+    }
+
+    @And("I edit {string} to {string} in {string} of {string} course")
+    public void iEditToInOfCourse(final String updateToEdit, final String newUpdate, final String updates,
+                                  final String courseName) {
+        Course course = courses.selectCourseByName(courseName);
+        update = (Updates) course.selectCourseOption(updates);
+        EditUpdatePopup edit = update.editUpdate(updateToEdit);
+        update = edit.newUpdate(newUpdate);
     }
 
 }
