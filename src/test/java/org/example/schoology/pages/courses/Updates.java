@@ -41,8 +41,8 @@ public class Updates extends AbstractPage {
         Actions actionElement = new Actions(driver);
         WebElement updateElement = driver.findElement(By.xpath(String.format(XPATH_UPDATE_TEXT, updateToEdit)));
         actionElement.moveToElement(updateElement).perform();
-        updateAction.click();
-        editUpdate.click();
+        action.click(updateAction);
+        action.click(editUpdate);
 
         return new EditUpdatePopup();
 
