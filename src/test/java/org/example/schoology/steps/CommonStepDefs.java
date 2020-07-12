@@ -43,7 +43,7 @@ public class CommonStepDefs {
 
     @Then("I should see the {string} message")
     public void iShouldSeeTheMessage(final String message) {
-        assertion.assertEquals(message, new ViewList().getErrorMessage(), "Message banner");
+        assertion.assertEquals(message, new ViewList().getMessage(), "Message banner");
     }
 
 }
