@@ -42,8 +42,7 @@ public class Course extends AbstractPage {
     }
 
     public Object selectCourseOption(final String nameOption) {
-        WebElement courseOption = driver.findElement(By.xpath(String.format(XPATH_COURSE_OPTION, nameOption)));
-        courseOption.click();
+        action.click(driver.findElement(By.xpath(String.format(XPATH_COURSE_OPTION, nameOption))));
         return allOptions().get(nameOption);
     }
 }
