@@ -2,7 +2,7 @@ Feature: Group
 
   @deleteGroup
   Scenario: Add Folder Resource in a group
-    Given I log in as "ResourceInstructor02" user
+    Given I log in as "GroupInstructor01" user
     And I create a group with:
       | name        | SeleniumWebDriver |
       | description | Description       |
