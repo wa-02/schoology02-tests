@@ -23,10 +23,10 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
  */
 public class Resources extends AbstractPage {
     public static final String ADD_RESOURCE_ACTIONS_BUTTON = "//div[@id='toolbar-add']/child::div[@role='button']";
-    public static final String RESOURCE_ACTIONS_BUTTON = "//a[text()='%s']/parent::td/following-sibling::td" +
-            "/descendant::div[@role='button']";
-    public static final String RESOURCE_ACTIONS_DELETE_OPTION = "//ul[@style='display: block;" +
-            "']/descendant::a[@class='action-delete  sExtlink-processed popups-processed']";
+    public static final String RESOURCE_ACTIONS_BUTTON = "//a[text()='%s']/parent::td/following-sibling::td"
+            + "/descendant::div[@role='button']";
+    public static final String RESOURCE_ACTIONS_DELETE_OPTION = "//ul[@style='display: block;"
+            + "']/descendant::a[@class='action-delete  sExtlink-processed popups-processed']";
     public static final String RESOURCE_ITEM = "//a[text()='%s']";
 
     public static final String EDIT_QUESTION_QUIZ = "//ul[@style='display: block;"
@@ -34,8 +34,8 @@ public class Resources extends AbstractPage {
 
     public static final String RESOURCE_ACTIONS_EDIT = "//a[text()='%s']/following::a[@class='action-edit-template "
             + "edit-popup folder sExtlink-processed popups-processed']";
-    public static final String ADD_FOLDER_OPTION = "//li[@id='collection-add-folder']/child::a[@class='sExtlink" +
-            "-processed popups-processed']";
+    public static final String ADD_FOLDER_OPTION = "//li[@id='collection-add-folder']/child::a[@class='sExtlink"
+            + "-processed popups-processed']";
 
     @FindBy(css = "#collection-add-question-bank")
     private WebElement addQuestionBankOption;
