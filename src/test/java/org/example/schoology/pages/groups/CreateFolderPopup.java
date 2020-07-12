@@ -8,7 +8,7 @@ public class CreateFolderPopup extends AbstractGroupPopup {
 
     public static final String CREATE_BUTTON =  "//input[@id='edit-submit' and @value='Create']";
 
-    public Groups create(Map<String, String> datatable) {
+    public Groups create(final Map<String, String> datatable) {
         fillFolderData(datatable);
         driver.findElement(By.xpath(CREATE_BUTTON)).click();
         return new Groups();

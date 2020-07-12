@@ -87,7 +87,7 @@ public class Groups extends ViewList {
         return accessCode.getText();
     }
 
-    public void clickInMenuItem(String menuItem) {
+    public void clickInMenuItem(final String menuItem) {
         driver.findElement(By.xpath(String.format(MENU_ITEM, menuItem))).click();
     }
 
@@ -105,7 +105,7 @@ public class Groups extends ViewList {
 
     }
 
-    public String getResourcesByName(String folderName) {
+    public String getResourcesByName(final String folderName) {
         return driver.findElement(By.xpath(String.format(GROUP_BY_NAME, folderName))).getText();
     }
 

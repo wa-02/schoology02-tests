@@ -4,7 +4,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 
-public class ResetAccessCodePopup extends AbstractGroupPopup{
+public class ResetAccessCodePopup extends AbstractGroupPopup {
 
     @FindBy(css = "input[id='edit-submit'][value='Confirm']")
     protected WebElement confirmButton;
