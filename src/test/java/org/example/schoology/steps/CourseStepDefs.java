@@ -10,13 +10,7 @@ import org.example.core.ScenarioContext;
 import org.example.core.ui.SharedDriver;
 import org.example.schoology.pages.Home;
 import org.example.schoology.pages.SubMenu;
-import org.example.schoology.pages.courses.Courses;
-import org.example.schoology.pages.courses.Course;
-import org.example.schoology.pages.courses.Updates;
-import org.example.schoology.pages.courses.CreateCoursePopup;
-import org.example.schoology.pages.courses.EditUpdatePopup;
-import org.example.schoology.pages.courses.EditCoursePopup;
-import org.example.schoology.pages.courses.JoinACoursePopup;
+import org.example.schoology.pages.courses.*;
 import org.testng.asserts.Assertion;
 
 public class CourseStepDefs {
@@ -94,6 +88,24 @@ public class CourseStepDefs {
         update = (Updates) course.selectCourseOption(updates);
         EditUpdatePopup edit = update.editUpdate(updateToEdit);
         update = edit.newUpdate(newUpdate);
+    }
+
+    @And("I delete {string} from {string} of {string}")
+    public void iDeleteFromOf(final String updateName, final String updateOption, final String courseName) {
+        Course course = courses.selectCourseByName(courseName);
+        update = (Updates) course.selectCourseOption(updateOption);
+        DeleteUpdatePopup delete = update.deleteUpdate(updateName);
+        update = delete.deleteUpdate();
+    }
+
+    @And("I should see message {string} in updates")
+    public void iShouldSeeMessageInUpdates(final String expectedMessage) {
+        assertion.assertEquals(expectedMessage, update.getMessageDelete());
+    }
+
+    @And("I should not see {string} in updates")
+    public void iShouldNotSeeInUpdates(final String updateName) {
+        assertion.assertFalse(update.updateItemExist(updateName));
     }
 
 }

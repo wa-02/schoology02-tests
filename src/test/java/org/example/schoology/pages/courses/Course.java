@@ -14,7 +14,7 @@ public class Course extends AbstractPage {
 
     private final By cssCourseProfile = By.cssSelector("#course-profile-materials");
 
-    public static final String XPATH_COURSE_OPTION = "//a[text()='%s']";
+    public static final String XPATH_COURSE_OPTION = "//a[contains(text(),'%s')]";
 
     @FindAll({
             @FindBy(css = "#course-profile-materials"),
