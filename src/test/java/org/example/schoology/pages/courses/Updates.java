@@ -26,10 +26,9 @@ public class Updates extends AbstractPage {
     @FindBy(css = "li.action-delete")
     private WebElement deleteUpdate;
 
-    @FindBy(css = "div.s-edge-type-update-post")
-    private WebElement updateTextRemoved;
-
     public static final String XPATH_UPDATE_TEXT = "//p[text()='%s']";
+
+    public static final String XPATH_DELETE_MESSAGE = "//div[text()='%s']";
 
     public void postUpdate(final String text) {
         driver.switchTo().frame(frame);
@@ -65,8 +64,8 @@ public class Updates extends AbstractPage {
         return new DeleteUpdatePopup();
     }
 
-    public String getMessageDelete() {
-        return action.getText(updateTextRemoved);
+    public String getMessageDelete(final String deletedText) {
+        return action.getText(By.xpath(String.format(XPATH_DELETE_MESSAGE, deletedText)));
     }
 
     public boolean updateItemExist(final String updateName) {

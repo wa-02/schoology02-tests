@@ -107,7 +107,7 @@ public class CourseStepDefs {
 
     @And("I should see message {string} in updates")
     public void iShouldSeeMessageInUpdates(final String expectedMessage) {
-        assertion.assertEquals(expectedMessage, update.getMessageDelete());
+        assertion.assertEquals(expectedMessage, update.getMessageDelete(expectedMessage));
     }
 
     @And("I should not see {string} in updates")
