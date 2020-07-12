@@ -5,6 +5,8 @@ import org.example.schoology.pages.resources.AddQuestionBankResourcePopup;
 import org.example.schoology.pages.resources.AddTestQuizResourcePopup;
 import org.example.schoology.pages.resources.DeleteResourcePopup;
 import org.example.schoology.pages.resources.TestQuizTemplatePopup;
+import org.example.schoology.pages.resources.AddFolderPopup;
+import org.example.schoology.pages.resources.EditFolderPopup;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -20,16 +22,20 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
  * @since   2020-07-08
  */
 public class Resources extends AbstractPage {
-    public static final String ADD_RESOURCE_ACTIONS_BUTTON = "//div[@id='toolbar-add']/child::div[@class='action"
-            + "-links-unfold ']";
+    public static final String ADD_RESOURCE_ACTIONS_BUTTON = "//div[@id='toolbar-add']/child::div[@role='button']";
     public static final String RESOURCE_ACTIONS_BUTTON = "//a[text()='%s']/parent::td/following-sibling::td"
-            + "/descendant::div[@class='action-links-unfold ']";
-    public static final String RESOURCE_ACTIONS_DELETE_OPTION = "//a[text()='%s']/following::a[@class='action-delete "
-            + " sExtlink-processed popups-processed']";
+            + "/descendant::div[@role='button']";
+    public static final String RESOURCE_ACTIONS_DELETE_OPTION = "//ul[@style='display: block;"
+            + "']/descendant::a[@class='action-delete  sExtlink-processed popups-processed']";
     public static final String RESOURCE_ITEM = "//a[text()='%s']";
 
     public static final String EDIT_QUESTION_QUIZ = "//ul[@style='display: block;"
             + "']/descendant::li/a[@class='action-edit-template-assessment-questions sExtlink-processed']";
+
+    public static final String RESOURCE_ACTIONS_EDIT = "//a[text()='%s']/following::a[@class='action-edit-template "
+            + "edit-popup folder sExtlink-processed popups-processed']";
+    public static final String ADD_FOLDER_OPTION = "//li[@id='collection-add-folder']/child::a[@class='sExtlink"
+            + "-processed popups-processed']";
 
     @FindBy(css = "#collection-add-question-bank")
     private WebElement addQuestionBankOption;
@@ -70,7 +76,6 @@ public class Resources extends AbstractPage {
         action.click(By.xpath(String.format(RESOURCE_ACTIONS_BUTTON, resourceName)));
         action.click(By.xpath(String.format(RESOURCE_ACTIONS_DELETE_OPTION, resourceName)));
         return new DeleteResourcePopup();
-
     }
 
     public boolean resourceItemExist(final String resourceName) {
@@ -106,6 +111,17 @@ public class Resources extends AbstractPage {
     public TestQuizTemplatePopup clickResourceItem(final String resourceName) {
         action.click(By.xpath(String.format(RESOURCE_ITEM, resourceName)));
         return new TestQuizTemplatePopup();
+    }
+    public AddFolderPopup clickAddFolderOption() {
+        clickAddResourcesButton();
+        action.click(By.xpath(ADD_FOLDER_OPTION));
+        return new AddFolderPopup();
+
+    }
+    public EditFolderPopup clickEditFolderOption(final String folderName) {
+        action.click(By.xpath(String.format(RESOURCE_ACTIONS_BUTTON, folderName)));
+        action.click(By.xpath(String.format(RESOURCE_ACTIONS_EDIT, folderName)));
+        return new EditFolderPopup();
     }
 
 

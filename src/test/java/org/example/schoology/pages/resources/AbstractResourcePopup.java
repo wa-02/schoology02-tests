@@ -2,6 +2,7 @@ package org.example.schoology.pages.resources;
 
 import org.example.core.ui.AbstractPage;
 import org.example.schoology.pages.Step;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -19,6 +20,8 @@ import java.util.Map;
  * @since   2020-07-08
  */
 public abstract class AbstractResourcePopup extends AbstractPage {
+
+    public static final String ADD_FOLDER_COLOUR = "div[class='clickable s-js-color-select s-js-color-%s']";
 
     @FindBy(css = "#edit-title")
     private WebElement addQuestionBankNameTextField;
@@ -41,6 +44,17 @@ public abstract class AbstractResourcePopup extends AbstractPage {
     @FindBy(css = "form#s-library-collection-template-form input#edit-submit")
     protected WebElement addTestQuizSubmitButton;
 
+    @FindBy(css = "input[value='Create']")
+    private WebElement addFolderCreateButton;
+
+    @FindBy(css = "#edit-title")
+    private WebElement addFolderNameField;
+
+    @FindBy(css = ".mceContentBody")
+    private WebElement addFolderDescriptionTextField;
+
+    @FindBy(css = "input[class='form-text required edit-title']")
+    private WebElement editFolderNameField;
 
     public void setNameAddQuestionBank(final String name) {
         addQuestionBankNameTextField.sendKeys(name);
@@ -87,7 +101,46 @@ public abstract class AbstractResourcePopup extends AbstractPage {
     }
 
     private void setMaxPointsAddTestQuiz(final String maxPoints) {
-        addTestQuizMaxPointsTextField.clear();
-        addTestQuizMaxPointsTextField.sendKeys(maxPoints);
+        action.clearAndSetValue(addTestQuizMaxPointsTextField, maxPoints);
     }
+
+    public void fillAddFolderForm(final Map<String, String> resourceMap) {
+        Map<String, Step> stepsMap = new HashMap<>();
+        stepsMap.put("name", () -> setNameAddFolder(resourceMap.get("name")));
+        stepsMap.put("colour", () -> setColourToFolder(resourceMap.get("colour")));
+        stepsMap.put("description", () -> setDescriptionFolder(resourceMap.get("description")));
+
+        for (String keyField : resourceMap.keySet()) {
+            stepsMap.get(keyField).execute();
+        }
+    }
+
+    private void setNameAddFolder(final String name) {
+        action.clearAndSetValue(addFolderNameField, name);
+    }
+
+    private void setDescriptionFolder(final String description) {
+        driver.switchTo().frame("edit-description_ifr");
+        action.click(addFolderDescriptionTextField);
+        action.clearAndSetValue(addFolderDescriptionTextField, description);
+        driver.switchTo().defaultContent();
+    }
+    private void setColourToFolder(final String colour) {
+        action.click(By.cssSelector(String.format(ADD_FOLDER_COLOUR, colour)));
+    }
+
+    public void fillEditFolderForm(final Map<String, String> resourceMap) {
+        Map<String, Step> stepsMap = new HashMap<>();
+        stepsMap.put("name", () -> setNameEditFolder(resourceMap.get("name")));
+        stepsMap.put("colour", () -> setColourToFolder(resourceMap.get("colour")));
+
+        for (String keyField : resourceMap.keySet()) {
+            stepsMap.get(keyField).execute();
+        }
+    }
+
+    private void setNameEditFolder(final String name) {
+        action.clearAndSetValue(editFolderNameField, name);
+    }
+
 }
