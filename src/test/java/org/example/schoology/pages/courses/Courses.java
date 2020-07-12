@@ -13,6 +13,9 @@ public class Courses extends ViewList {
     public static final String XPATH_SECTION_BY_NAME =
             "//span[text()='%s']/parent::p/parent::li//a[@class='sExtlink-processed']";
 
+    public static final String XPATH_SELECT_COURSE =
+            "//span[text()='%s']/ancestor::li//child::a[@class=\"sExtlink-processed\"]";
+
     @FindBy(css = "a.create-course-btn")
     private WebElement createCourseButton;
 
@@ -21,6 +24,9 @@ public class Courses extends ViewList {
 
     @FindBy(css = "ul[style=\"display: block;\"] .action-delete-link")
     private WebElement deleteCourse;
+
+    @FindBy(css = "a.link-btn")
+    private WebElement joinCourseButton;
 
     public CreateCoursePopup clickCreateCourseButton() {
         createCourseButton.click();
@@ -55,5 +61,15 @@ public class Courses extends ViewList {
 
     public String getSectionByName(final String courseName) {
         return driver.findElement(By.xpath(String.format(XPATH_SECTION_BY_NAME, courseName))).getText();
+    }
+
+    public JoinACoursePopup clickJoinCourseButton() {
+        action.click(joinCourseButton);
+        return new JoinACoursePopup();
+    }
+
+    public Course selectCourseByName(final String courseName) {
+        driver.findElement(By.xpath(String.format(XPATH_SELECT_COURSE, courseName))).click();
+        return new Course();
     }
 }
