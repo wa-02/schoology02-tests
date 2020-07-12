@@ -79,7 +79,7 @@ public class GroupStepDefs {
         groups.clickInMenuItem(menuItem);
     }
 
-    @And("I add a folder resource to group")
+    @And("I add a folder resource to group:")
     public void iAddAFolderResourceToGroup(final Map<String, String> datatable) {
         CreateFolderPopup createFolderPopup = groups.clickAddResource();
         createFolderPopup.create(datatable);
