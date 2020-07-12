@@ -42,7 +42,7 @@ public class MultipleChoiceQuestion extends AbstractPage {
     private void setMultipleChoiceQuestion(final String question) {
         driver.switchTo().frame("edit-title_ifr");
         action.click(questionTextField);
-        questionTextField.sendKeys(question);
+        action.setValue(questionTextField, question);
         driver.switchTo().defaultContent();
     }
 
@@ -59,16 +59,16 @@ public class MultipleChoiceQuestion extends AbstractPage {
     }
 
     private void removeBlankQuestions() {
-        removeBlanksButton.click();
+        action.click(removeBlanksButton);
     }
 
     private void fillMultipleChoiceQuestion(final Map<String, String> questionMap) {
-        Integer numberofQuestions = Integer.parseInt(questionMap.get("number_of_options"));
+        Integer numberOfQuestions = Integer.parseInt(questionMap.get("number_of_options"));
 
         Map<String, Step> stepMap = new HashMap<>();
         stepMap.put("question", () -> setMultipleChoiceQuestion(questionMap.get("question")));
 
-        for (int i = 0; i < numberofQuestions; i++) {
+        for (int i = 0; i < numberOfQuestions; i++) {
             String choice = "choice_" + i;
             String index = String.valueOf(i);
             stepMap.put(choice, () -> setChoiceAnswerText(questionMap.get(choice), index));
