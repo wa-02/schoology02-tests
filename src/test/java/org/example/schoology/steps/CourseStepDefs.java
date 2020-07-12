@@ -124,12 +124,11 @@ public class CourseStepDefs {
         Course course = courses.selectCourseByName(courseName);
         member = (Members) course.selectCourseOption(members);
         DeleteMemberPopup delete = member.removeMember(memberName);
-        delete.clickConfirmButton();
+        member = delete.clickConfirmButton();
     }
 
     @Then("I should not see {string} from members")
     public void iShouldNotSeeFromMembers(final String memberName) {
-        Members member = new Members();
         assertion.assertFalse(member.memberExists(memberName));
     }
 }
