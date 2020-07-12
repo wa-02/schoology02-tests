@@ -2,7 +2,7 @@ Feature: Group
 
   @deleteGroup
   Scenario: Reset access code
-    Given I log in as "GroupInstructor01" user
+    Given I log in as "ResourceInstructor01" user
     When I create a group with:
       | name        | SeleniumWebDriver |
       | description | Description       |
