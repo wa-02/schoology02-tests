@@ -1,6 +1,7 @@
 package org.example.schoology.pages.groups;
 
 import org.example.schoology.pages.ViewList;
+import org.example.schoology.pages.disussions.CreateDiscussionPopup;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
@@ -15,6 +16,10 @@ public class Groups extends ViewList {
 
     @FindBy(css = "a.create-group")
     private WebElement createGroupButton;
+
+    @FindBy(css = "a.group-discussion-left-menu")
+    private WebElement discussionMenu;
+
 
     public CreateGroupPopup clickCreateGroupButton() {
         createGroupButton.click();
@@ -35,6 +40,11 @@ public class Groups extends ViewList {
 
     public String getGroupByName(final String groupName) {
         return driver.findElement(By.xpath(String.format(GROUP_BY_NAME, groupName))).getText();
+    }
+
+    public CreateDiscussionPopup clickDiscussionsList() {
+        discussionMenu.click();
+        return new CreateDiscussionPopup();
     }
 
 }
