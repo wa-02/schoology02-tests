@@ -14,7 +14,7 @@ Feature: Group Discussion feature
     When I click to Discussions menu
     And I click on Add Discussion
     And I create a discussion with:
-      | title        | testDiscussion   |
+      | title        | testDiscussion to update  |
       | description  | test discussion  |
     And I join to the created discussion
     And I write "a Comment"

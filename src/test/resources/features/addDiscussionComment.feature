@@ -7,7 +7,7 @@ Feature: Group Discussion feature
   Scenario: create a group discussion as a trainer
     Given I log in as "CourseInstructor01" user
     And I create a group with:
-      | name        | SeleniumWebDriver |
+      | name        | SeleniumWebDriver_Discussion_comment |
       | description | Description       |
       | privacy     | School            |
       | access      | Invite Only       |
@@ -15,7 +15,7 @@ Feature: Group Discussion feature
     When I click to Discussions menu
     And I click on Add Discussion
     And I create a discussion with:
-      | title        | testDiscussion   |
+      | title        | testDiscussion_comment_1   |
       | description  | test discussion  |
     And I join to the created discussion
     And I write "a Comment"
