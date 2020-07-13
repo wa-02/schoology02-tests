@@ -32,4 +32,10 @@ public class Discussions extends AbstractPage {
     public boolean resourceItemExist(final String resourceName) {
         return action.isElementDisplayedOnScreen(By.cssSelector("a.discussion-title"));
     }
+
+    public Discussion joinDiscussion() {
+
+        discussionName.click();
+        return new Discussion();
+    }
 }
