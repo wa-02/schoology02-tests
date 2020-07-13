@@ -50,7 +50,7 @@ public class DiscussionStepDefs {
 
     @And("I write {string}")
     public void iWriteAComment(final String comment) {
-        discussion.setDescription(comment);
+        discussion.setComment(comment);
     }
 
     @Then("A new comment from Trainer {string} is displayed")
@@ -60,6 +60,20 @@ public class DiscussionStepDefs {
 
     @And("the comment displayed is {string}")
     public void commentDisplayedIs(final String comment) {
+        assertion.assertEquals(comment, discussion.getCommentText());
+    }
+
+    @And("I click on edit the comment")
+    public void iClickOnEditTheComment() {
+        discussion.clickEditDeleteWraper();
+    }
+
+    @And("I update a comment with {string}")
+    public void iUpdateAComment(String comment) {
+        discussion.updateComment(comment);
+    }
+    @Then("the new comment displayed should be {string}")
+    public void theNewCommentShouldBe(String comment) {
         assertion.assertEquals(comment, discussion.getCommentText());
     }
 

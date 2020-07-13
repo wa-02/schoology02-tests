@@ -1,7 +1,7 @@
 # new feature
 # Tags: optional
 
-Feature: Create a Group Discussion
+Feature: Group Discussion feature
 
   @softAssert @deleteGroup
   Scenario: create a group discussion as a trainer
