@@ -9,5 +9,4 @@ public class EditCoursePopup extends AbstractCoursePopup {
         submitButton.click();
         return new Courses();
     }
-
 }

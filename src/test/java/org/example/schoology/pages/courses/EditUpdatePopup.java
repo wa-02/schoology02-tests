@@ -21,7 +21,6 @@ public class EditUpdatePopup extends AbstractPage {
         frameTextField.sendKeys(newUpdate);
         driver.switchTo().defaultContent();
         saveChanges.click();
-
         return new Updates();
     }
 }

@@ -11,7 +11,6 @@ public class DeleteUpdatePopup extends AbstractPage {
 
     public Updates deleteUpdate() {
         action.click(deleteButton);
-
         return new Updates();
     }
 }

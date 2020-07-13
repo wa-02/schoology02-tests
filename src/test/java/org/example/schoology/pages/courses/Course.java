@@ -37,12 +37,13 @@ public class Course extends AbstractPage {
     public Map<String, Object> allOptions() {
         Map<String, Object> resources = new HashMap<>();
         resources.put("Updates", new Updates());
+        resources.put("Members", new Members());
 
         return resources;
     }
 
     public Object selectCourseOption(final String nameOption) {
-        action.click(driver.findElement(By.xpath(String.format(XPATH_COURSE_OPTION, nameOption))));
+        action.click(By.xpath(String.format(XPATH_COURSE_OPTION, nameOption)));
         return allOptions().get(nameOption);
     }
 }
