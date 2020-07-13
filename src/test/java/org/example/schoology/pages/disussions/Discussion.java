@@ -45,9 +45,7 @@ public class Discussion extends AbstractPage {
     }
 
     public String getCommentText() {
-//        String comment = commentText.getText();
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("#popups-3")));
-//        action.getText(commentText);
         return commentText.getText();
     }
 
@@ -57,7 +55,6 @@ public class Discussion extends AbstractPage {
     }
 
     public void updateComment(final String comment) {
-//        commentArea.click();
         WebElement groupActionsButton = driver.findElement(By.xpath(DISCUSSION_ACTIONS_BUTTON));
         driver.switchTo().frame("edit-comment-body_ifr");
         action.click(discussionComment);
