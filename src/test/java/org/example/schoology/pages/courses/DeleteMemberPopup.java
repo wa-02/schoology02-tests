@@ -11,7 +11,6 @@ public class DeleteMemberPopup extends AbstractPage {
 
     public Members clickConfirmButton() {
         action.click(confirmButton);
-
         return new Members();
     }
 }
