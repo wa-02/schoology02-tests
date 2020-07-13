@@ -1,10 +1,8 @@
 package org.example.schoology.pages.disussions;
 
 import org.example.core.ui.AbstractPage;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class Discussion extends AbstractPage {
 

@@ -17,7 +17,8 @@ public class DiscussionStepDefs {
     private Discussion discussion;
     private Assertion assertion;
 
-    public DiscussionStepDefs(final AssertionGroup assertionGroup, final Discussions discussions, final Discussion discussion) {
+    public DiscussionStepDefs(final AssertionGroup assertionGroup, final Discussions discussions,
+                              final Discussion discussion) {
         assertion = assertionGroup.getAssertion();
         this.discussions = discussions;
         this.discussion = discussion;
@@ -54,12 +55,12 @@ public class DiscussionStepDefs {
     }
 
     @Then("A new comment from Trainer {string} is displayed")
-    public void aNewCommentFromTrainerIsDisplayed(String comment) {
+    public void aNewCommentFromTrainerIsDisplayed(final String comment) {
         assertion.assertEquals(comment, discussion.getCommentAuthor());
     }
 
     @And("the comment displayed is {string}")
-    public void commentDisplayedIs(String comment) {
+    public void commentDisplayedIs(final String comment) {
         assertion.assertEquals(comment, discussion.getCommentText());
     }
 
