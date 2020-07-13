@@ -69,11 +69,11 @@ public class DiscussionStepDefs {
     }
 
     @And("I update a comment with {string}")
-    public void iUpdateAComment(String comment) {
+    public void iUpdateAComment(final String comment) {
         discussion.updateComment(comment);
     }
     @Then("the new comment displayed should be {string}")
-    public void theNewCommentShouldBe(String comment) {
+    public void theNewCommentShouldBe(final String comment) {
         assertion.assertEquals(comment, discussion.getCommentText());
     }
 

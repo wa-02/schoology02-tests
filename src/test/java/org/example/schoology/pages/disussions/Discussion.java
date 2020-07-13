@@ -51,7 +51,7 @@ public class Discussion extends AbstractPage {
         return commentText.getText();
     }
 
-    public void clickEditDeleteWraper(){
+    public void clickEditDeleteWraper() {
         editDeleteWraper.click();
         editOption.click();
     }
