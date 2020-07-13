@@ -60,7 +60,7 @@ public class Courses extends ViewList {
     }
 
     public String getSectionByName(final String courseName) {
-        return driver.findElement(By.xpath(String.format(XPATH_SECTION_BY_NAME, courseName))).getText();
+        return action.getText(By.xpath(String.format(XPATH_SECTION_BY_NAME, courseName)));
     }
 
     public JoinACoursePopup clickJoinCourseButton() {
@@ -69,7 +69,7 @@ public class Courses extends ViewList {
     }
 
     public Course selectCourseByName(final String courseName) {
-        driver.findElement(By.xpath(String.format(XPATH_SELECT_COURSE, courseName))).click();
+        action.click(By.xpath(String.format(XPATH_SELECT_COURSE, courseName)));
         return new Course();
     }
 }

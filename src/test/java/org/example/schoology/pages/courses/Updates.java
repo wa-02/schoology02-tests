@@ -38,8 +38,7 @@ public class Updates extends AbstractPage {
     }
 
     public String getUpdate(final String updateName) {
-        WebElement updatedText = driver.findElement(By.xpath(String.format(XPATH_UPDATE_TEXT, updateName)));
-        return updatedText.getText();
+        return action.getText(By.xpath(String.format(XPATH_UPDATE_TEXT, updateName)));
     }
 
     public void moveToUpdate(final String updateName) {

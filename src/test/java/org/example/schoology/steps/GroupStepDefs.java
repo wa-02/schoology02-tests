@@ -4,6 +4,7 @@ import java.util.Map;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.example.core.AssertionGroup;
 import org.example.core.ScenarioContext;
 import org.example.core.ui.SharedDriver;
@@ -52,6 +53,13 @@ public class GroupStepDefs {
     public void iShouldSeeAGroupWithAsName(final String groupName) {
         assertion.assertEquals(groupName, groups.getGroupByName(groupName));
     }
+
+    @When("I click to Discussions menu")
+    public void iClickDiscussionsMenu() {
+        groups.clickDiscussionsList();
+    }
+
+
 
     @And("I enter to {string} group")
     public void iEnterTo(final String groupName) {
