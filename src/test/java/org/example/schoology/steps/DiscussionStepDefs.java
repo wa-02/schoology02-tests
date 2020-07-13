@@ -9,12 +9,12 @@ import org.testng.asserts.Assertion;
 
 import java.util.Map;
 
-public class DiscussionStepDefs{
+public class DiscussionStepDefs {
 
     private final Discussions discussions;
     private Assertion assertion;
 
-    public DiscussionStepDefs(final AssertionGroup assertionGroup, Discussions discussions) {
+    public DiscussionStepDefs(final AssertionGroup assertionGroup, final Discussions discussions) {
         assertion = assertionGroup.getAssertion();
         this.discussions = discussions;
     }
@@ -25,14 +25,14 @@ public class DiscussionStepDefs{
     }
 
     @And("I create a discussion with:")
-    public void iCreateADiscussionWith(final Map<String, String> datatable){
+    public void iCreateADiscussionWith(final Map<String, String> datatable) {
         CreateDiscussionPopup createDiscussionPopup  = discussions.createDiscussion();
         createDiscussionPopup.fill(datatable);
         createDiscussionPopup.createDiscussionButton();
     }
 
     @Then("I should see the {string} discussion created")
-    public void iShouldSeeNewDiscussionInDiscussionList(String discussionName){
+    public void iShouldSeeNewDiscussionInDiscussionList(final String discussionName) {
 
         assertion.assertEquals(discussionName, discussions.getDiscussionName(discussionName));
 //        assert(discussionName == discussions.getDiscussionName());

@@ -15,11 +15,11 @@ public class Discussions extends AbstractPage {
     @FindBy(css = "a.discussion-title")
     private WebElement discussionName;
 
-    public CreateDiscussionPopup createDiscussion(){
+    public CreateDiscussionPopup createDiscussion() {
         return new CreateDiscussionPopup();
     }
 
-    public CreateDiscussionPopup clickAddDiscussionButton(){
+    public CreateDiscussionPopup clickAddDiscussionButton() {
         createDiscussionButton.click();
         return new CreateDiscussionPopup();
     }

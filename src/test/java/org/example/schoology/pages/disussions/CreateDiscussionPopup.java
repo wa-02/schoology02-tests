@@ -44,7 +44,8 @@ public class CreateDiscussionPopup extends AbstractPage {
         driver.switchTo().defaultContent();
     }
 
-    public void createDiscussionButton(){
+    public void createDiscussionButton() {
+
         createButton.click();
     }
 
