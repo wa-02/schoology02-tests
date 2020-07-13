@@ -2,7 +2,6 @@ package org.example.schoology.steps;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
-import io.cucumber.java.en_scouse.An;
 import org.example.core.AssertionGroup;
 import org.example.schoology.pages.disussions.CreateDiscussionPopup;
 import org.example.schoology.pages.disussions.Discussion;
