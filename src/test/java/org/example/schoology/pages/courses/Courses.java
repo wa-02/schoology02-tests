@@ -60,7 +60,7 @@ public class Courses extends ViewList {
     }
 
     public String getSectionByName(final String courseName) {
-        return action.getText(By.xpath(String.format(XPATH_SECTION_BY_NAME,courseName)));
+        return action.getText(By.xpath(String.format(XPATH_SECTION_BY_NAME, courseName)));
     }
 
     public JoinACoursePopup clickJoinCourseButton() {
