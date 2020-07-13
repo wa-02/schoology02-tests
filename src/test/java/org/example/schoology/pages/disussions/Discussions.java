@@ -15,6 +15,9 @@ public class Discussions extends AbstractPage {
     @FindBy(css = "a.discussion-title")
     private WebElement discussionName;
 
+    @FindBy(css = "a.delete-discussion")
+    private WebElement deleteDiscussionButton;
+
     public CreateDiscussionPopup createDiscussion() {
         return new CreateDiscussionPopup();
     }
@@ -37,5 +40,9 @@ public class Discussions extends AbstractPage {
 
         discussionName.click();
         return new Discussion();
+    }
+
+    public void deleteDiscussionClick() {
+        deleteDiscussionButton.click();
     }
 }

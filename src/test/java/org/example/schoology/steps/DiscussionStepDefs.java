@@ -77,4 +77,14 @@ public class DiscussionStepDefs {
         assertion.assertEquals(comment, discussion.getCommentText());
     }
 
+    @And("I see the {string} discussion listed")
+    public void iSeeNewDiscussionListed(String discussionName) {
+        discussions.getDiscussionName(discussionName);
+    }
+
+    @And("I click on delete Discussion icon")
+    public void iClickDeleteDiscussion() {
+
+    }
+
 }
