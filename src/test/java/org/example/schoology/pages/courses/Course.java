@@ -14,7 +14,7 @@ public class Course extends AbstractPage {
 
     private final By cssCourseProfile = By.cssSelector("#course-profile-materials");
 
-    public static final String XPATH_COURSE_OPTION = "//a[text()='%s']";
+    public static final String XPATH_COURSE_OPTION = "//a[contains(text(),'%s')]";
 
     @FindAll({
             @FindBy(css = "#course-profile-materials"),
@@ -37,12 +37,13 @@ public class Course extends AbstractPage {
     public Map<String, Object> allOptions() {
         Map<String, Object> resources = new HashMap<>();
         resources.put("Updates", new Updates());
+        resources.put("Members", new Members());
 
         return resources;
     }
 
     public Object selectCourseOption(final String nameOption) {
-        action.click(driver.findElement(By.xpath(String.format(XPATH_COURSE_OPTION, nameOption))));
+        action.click(By.xpath(String.format(XPATH_COURSE_OPTION, nameOption)));
         return allOptions().get(nameOption);
     }
 }

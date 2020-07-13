@@ -12,12 +12,12 @@ public class JoinACoursePopup extends AbstractPage {
     protected WebElement joinButton;
 
     private void setAccessCode(final String code) {
-        accessCodeTextField.sendKeys(code);
+        action.setValue(accessCodeTextField, code);
     }
 
     public Courses joinCourse(final String code) {
         setAccessCode(code);
-        joinButton.click();
+        action.click(joinButton);
         return new Courses();
     }
 }

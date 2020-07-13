@@ -10,13 +10,16 @@ import org.example.core.ScenarioContext;
 import org.example.core.ui.SharedDriver;
 import org.example.schoology.pages.Home;
 import org.example.schoology.pages.SubMenu;
-import org.example.schoology.pages.courses.Courses;
 import org.example.schoology.pages.courses.Course;
+import org.example.schoology.pages.courses.Courses;
+import org.example.schoology.pages.courses.Members;
 import org.example.schoology.pages.courses.Updates;
 import org.example.schoology.pages.courses.CreateCoursePopup;
 import org.example.schoology.pages.courses.EditUpdatePopup;
 import org.example.schoology.pages.courses.EditCoursePopup;
 import org.example.schoology.pages.courses.JoinACoursePopup;
+import org.example.schoology.pages.courses.DeleteUpdatePopup;
+import org.example.schoology.pages.courses.DeleteMemberPopup;
 import org.testng.asserts.Assertion;
 
 public class CourseStepDefs {
@@ -28,6 +31,8 @@ public class CourseStepDefs {
     private Course course;
 
     private Updates update;
+
+    private Members member;
 
     private String accessCode;
 
@@ -96,4 +101,34 @@ public class CourseStepDefs {
         update = edit.newUpdate(newUpdate);
     }
 
+    @And("I delete {string} from {string} of {string}")
+    public void iDeleteFromOf(final String updateName, final String updateOption, final String courseName) {
+        Course course = courses.selectCourseByName(courseName);
+        update = (Updates) course.selectCourseOption(updateOption);
+        DeleteUpdatePopup delete = update.deleteUpdate(updateName);
+        update = delete.deleteUpdate();
+    }
+
+    @And("I should see message {string} in updates")
+    public void iShouldSeeMessageInUpdates(final String expectedMessage) {
+        assertion.assertEquals(expectedMessage, update.getMessageDelete(expectedMessage));
+    }
+
+    @And("I should not see {string} in updates")
+    public void iShouldNotSeeInUpdates(final String updateName) {
+        assertion.assertFalse(update.updateItemExist(updateName));
+    }
+
+    @And("I remove {string} member from {string} of a {string} course")
+    public void iRemoveMemberFromOfACourse(final String memberName, final String members, final String courseName) {
+        Course course = courses.selectCourseByName(courseName);
+        member = (Members) course.selectCourseOption(members);
+        DeleteMemberPopup delete = member.removeMember(memberName);
+        member = delete.clickConfirmButton();
+    }
+
+    @Then("I should not see {string} from members")
+    public void iShouldNotSeeFromMembers(final String memberName) {
+        assertion.assertFalse(member.memberExists(memberName));
+    }
 }
