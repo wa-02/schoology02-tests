@@ -3,6 +3,7 @@ package org.example.schoology.steps;
 import java.util.Map;
 
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.When;
 import org.example.core.AssertionGroup;
 import org.example.core.ui.SharedDriver;
 import org.example.schoology.pages.Home;
@@ -44,5 +45,12 @@ public class GroupStepDefs {
     public void iShouldSeeAGroupWithAsName(final String groupName) {
         assertion.assertEquals(groupName, groups.getGroupByName(groupName));
     }
+
+    @When("I click to Discussions menu")
+    public void iClickDiscussionsMenu() {
+        groups.clickDiscussionsList();
+    }
+
+
 
 }
