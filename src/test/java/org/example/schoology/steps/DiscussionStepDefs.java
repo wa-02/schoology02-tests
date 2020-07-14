@@ -78,7 +78,7 @@ public class DiscussionStepDefs {
     }
 
     @And("I see the {string} discussion listed")
-    public void iSeeNewDiscussionListed(String discussionName) {
+    public void iSeeNewDiscussionListed(final String discussionName) {
         discussions.getDiscussionName(discussionName);
     }
 
