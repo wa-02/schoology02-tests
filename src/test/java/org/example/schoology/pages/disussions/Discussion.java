@@ -9,6 +9,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 public class Discussion extends AbstractPage {
 
     public static final String DISCUSSION_ACTIONS_BUTTON = "//div[@class='submit-buttons']/child::span/child::input";
+    public static final String XPATH_EDIT_DELETE = "//p[text()='%s']/parent::div/parent::div/parent::div/parent::div" +
+            "/parent::div/child::div[@class='s-js-comment-action-links']";
 
     @FindBy(css = ".mceContentBody")
     private WebElement discussionComment;
@@ -51,8 +53,9 @@ public class Discussion extends AbstractPage {
         return commentText.getText();
     }
 
-    public void clickEditDeleteWraper() {
-        editDeleteWraper.click();
+    public void clickEditDeleteWraper(String comment) {
+        WebElement editWrapper = driver.findElement(By.xpath(String.format(XPATH_EDIT_DELETE,comment)));
+        editWrapper.click();
         editOption.click();
     }
 

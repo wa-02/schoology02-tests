@@ -65,7 +65,7 @@ public class DiscussionStepDefs {
 
     @And("I click on edit the comment")
     public void iClickOnEditTheComment() {
-        discussion.clickEditDeleteWraper();
+        discussion.clickEditDeleteWraper(discussion.getCommentText());
     }
 
     @And("I update a comment with {string}")
