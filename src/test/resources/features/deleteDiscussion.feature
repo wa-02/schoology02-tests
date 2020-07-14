@@ -3,11 +3,11 @@
 
 Feature: Group Discussion feature
 
-
+  @deleteGroup
   Scenario: delete a group discussion as a trainer
     Given I log in as "CourseInstructor01" user
     And I create a group with:
-      | name        | SeleniumWebDriver MZ21|
+      | name        | SeleniumWebDriver_delete_discussion|
       | description | Description       |
       | privacy     | School            |
       | access      | Invite Only       |
@@ -15,9 +15,9 @@ Feature: Group Discussion feature
     When I click to Discussions menu
     And I click on Add Discussion
     And I create a discussion with:
-      | title        | testDiscussion MZ2  |
+      | title        | testDiscussion_to_delete  |
       | description  | test discussion  |
-    And I see the "testDiscussion MZ2" discussion listed
+    And I see the "testDiscussion_to_delete" discussion listed
     And I click on delete Discussion icon
     And I click on delete button
     Then discussion is removed from discussion list

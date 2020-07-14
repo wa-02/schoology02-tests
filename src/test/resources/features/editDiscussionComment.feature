@@ -2,7 +2,7 @@
 
 Feature: Group Discussion feature
 
-
+  @deleteGroup
   Scenario: create a group discussion as a trainer
     Given I log in as "CourseInstructor01" user
     And I create a group with:
