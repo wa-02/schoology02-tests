@@ -5,11 +5,14 @@ import java.util.Map;
 
 import org.example.core.ui.AbstractPage;
 import org.example.schoology.pages.Step;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 
 public abstract class AbstractGroupPopup extends AbstractPage {
+
+    public static final String COLOR_BUTTON =  "//div[@data-color='%s' and @role='button']";
 
     @FindBy(css = "#edit-name")
     private WebElement nameField;
@@ -31,6 +34,10 @@ public abstract class AbstractGroupPopup extends AbstractPage {
 
     @FindBy(css = "#edit-submit")
     protected WebElement submitButton;
+
+    @FindBy(css = "#edit-title")
+    private WebElement titleField;
+
 
     public void fill(final Map<String, String> groupMap) {
         Map<String, Step> stepMap = new HashMap<>();
@@ -75,4 +82,31 @@ public abstract class AbstractGroupPopup extends AbstractPage {
         Select selectCategory = new Select(categoryField);
         selectCategory.selectByVisibleText(category);
     }
+
+    public void fillFolderData(final Map<String, String> groupMap) {
+        Map<String, Step> stepMap = new HashMap<>();
+        stepMap.put("name", () -> setTittle(groupMap.get("name")));
+        stepMap.put("description", () -> setDescriptionFrame(groupMap.get("description")));
+        stepMap.put("folderColor", () -> selecColor(groupMap.get("folderColor")));
+
+        for (final String keyField : groupMap.keySet()) {
+            stepMap.get(keyField).execute();
+        }
+    }
+
+    public void setTittle(final String code) {
+        titleField.clear();
+        titleField.sendKeys(code);
+    }
+
+    public void selecColor(final String code) {
+        driver.findElement(By.xpath(String.format(COLOR_BUTTON, code))).click();
+    }
+
+    public void setDescriptionFrame(final String code) {
+        driver.switchTo().frame("edit-description_ifr");
+        driver.findElement(By.xpath("//body/p")).sendKeys(code);
+        driver.switchTo().defaultContent();
+    }
+
 }
