@@ -50,7 +50,7 @@ public class DiscussionStepDefs {
 
     @And("I write {string}")
     public void iWriteAComment(final String comment) {
-        discussion.setDescription(comment);
+        discussion.setComment(comment);
     }
 
     @Then("A new comment from Trainer {string} is displayed")
@@ -61,6 +61,40 @@ public class DiscussionStepDefs {
     @And("the comment displayed is {string}")
     public void commentDisplayedIs(final String comment) {
         assertion.assertEquals(comment, discussion.getCommentText());
+    }
+
+    @And("I click on edit the comment")
+    public void iClickOnEditTheComment() {
+        discussion.clickEditDeleteWraper(discussion.getCommentText());
+    }
+
+    @And("I update a comment with {string}")
+    public void iUpdateAComment(final String comment) {
+        discussion.updateComment(comment);
+    }
+    @Then("the new comment displayed should be {string}")
+    public void theNewCommentShouldBe(final String comment) {
+        assertion.assertEquals(comment, discussion.getCommentText());
+    }
+
+    @And("I see the {string} discussion listed")
+    public void iSeeNewDiscussionListed(final String discussionName) {
+        discussions.getDiscussionName(discussionName);
+    }
+
+    @And("I click on delete Discussion icon")
+    public void iClickDeleteDiscussion() {
+        discussions.deleteDiscussionClick();
+    }
+
+    @And("I click on delete button")
+    public void iClickDeleteDiscussionButton() {
+        discussions.clickDeleteDiscussionButton();
+    }
+
+    @Then("discussion is removed from discussion list")
+    public void discussionIsRemovedFromDiscussionsList() {
+        assertion.assertTrue(discussions.discussionDeleted());
     }
 
 }
