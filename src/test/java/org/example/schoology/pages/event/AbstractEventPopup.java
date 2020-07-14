@@ -47,7 +47,6 @@ public abstract class AbstractEventPopup extends AbstractPage {
         for (String keyField : stepsMap.keySet()) {
             action.click(createEventPopupTitle);
             stepsMap.get(keyField).execute();
-            action.click(createEventPopupTitle);
         }
     }
 
