@@ -17,4 +17,4 @@ Feature: Group Discussion feature
     And I create a discussion with:
       | title        | testDiscussion_add   |
       | description  | test discussion  |
-    Then I should see the "testDiscussion" discussion created
+    Then I should see the "testDiscussion_add" discussion created

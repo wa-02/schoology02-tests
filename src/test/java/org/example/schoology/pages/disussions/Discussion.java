@@ -32,6 +32,7 @@ public class Discussion extends AbstractPage {
     private WebElement editOption;
 
     public void setComment(final String comment) {
+
         commentArea.click();
         driver.switchTo().frame("edit-comment_ifr");
         action.click(discussionComment);
@@ -45,12 +46,15 @@ public class Discussion extends AbstractPage {
     }
 
     public String getCommentText() {
+
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("#popups-3")));
         return commentText.getText();
     }
 
-    public void clickEditDeleteWraper() {
-        editDeleteWraper.click();
+    public void clickEditDeleteWraper(final String comment) {
+
+        WebElement editWrapper = driver.findElement(By.xpath(String.format(XPATH_EDIT_DELETE, comment)));
+        editWrapper.click();
         editOption.click();
     }
 
