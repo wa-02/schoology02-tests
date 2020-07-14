@@ -9,7 +9,7 @@ Feature: Groups
       | access      | Invite Only       |
       | category    | Musical Groups    |
     When I navigate to "Groups"
-    And I edit the "SeleniumWebDriver" group with:
+    And I edit the "SeleniumWebDriver_editGroup" group with:
       | name | SeleniumWebDriver updated |
     Then I should see the "SeleniumWebDriver updated has been saved." message
     And I should see a group with "SeleniumWebDriver updated" as a name
