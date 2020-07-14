@@ -4,16 +4,21 @@ import org.example.core.ui.AbstractPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class Discussions extends AbstractPage {
 
     public static final String XPATH_UPDATE_TEXT = "//a[text()='%s']";
+    public static final String DELETE_BUTTON = "//div[@class='submit-buttons']/child::span";
 
     @FindBy(css = "span.create-new")
     private WebElement createDiscussionButton;
 
     @FindBy(css = "a.discussion-title")
     private WebElement discussionName;
+
+    @FindBy(css = "a.delete-discussion")
+    private WebElement deleteDiscussionButton;
 
     public CreateDiscussionPopup createDiscussion() {
         return new CreateDiscussionPopup();
@@ -37,5 +42,19 @@ public class Discussions extends AbstractPage {
 
         discussionName.click();
         return new Discussion();
+    }
+
+    public void deleteDiscussionClick() {
+        deleteDiscussionButton.click();
+    }
+
+    public void clickDeleteDiscussionButton() {
+        WebElement deleteButton = driver.findElement(By.xpath(DELETE_BUTTON));
+        deleteButton.click();
+    }
+
+    public boolean discussionDeleted() {
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("#popups-0")));
+        return true;
     }
 }

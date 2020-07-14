@@ -77,4 +77,24 @@ public class DiscussionStepDefs {
         assertion.assertEquals(comment, discussion.getCommentText());
     }
 
+    @And("I see the {string} discussion listed")
+    public void iSeeNewDiscussionListed(final String discussionName) {
+        discussions.getDiscussionName(discussionName);
+    }
+
+    @And("I click on delete Discussion icon")
+    public void iClickDeleteDiscussion() {
+        discussions.deleteDiscussionClick();
+    }
+
+    @And("I click on delete button")
+    public void iClickDeleteDiscussionButton() {
+        discussions.clickDeleteDiscussionButton();
+    }
+
+    @Then("discussion is removed from discussion list")
+    public void discussionIsRemovedFromDiscussionsList() {
+        assertion.assertTrue(discussions.discussionDeleted());
+    }
+
 }
