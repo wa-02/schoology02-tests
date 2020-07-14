@@ -38,8 +38,6 @@ public class CommonStepDefs {
     @When("I navigate to {string}")
     public void iNavigateToCourses(final String menu) {
         SubMenu subMenu = home.clickMenu(menu);
-        // Not put logic
-        // for instance: if else, loops read files, handles strings, mathematical operations.
         subMenu.clickViewListLink(menu);
     }
 
