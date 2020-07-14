@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 
 public class Discussions extends AbstractPage {
 
-    public static final String XPATH_UPDATE_TEXT = "//a[text()='testDiscussion']";
+    public static final String XPATH_UPDATE_TEXT = "//a[text()='%s']";
 
     @FindBy(css = "span.create-new")
     private WebElement createDiscussionButton;
