@@ -54,21 +54,23 @@ public abstract class AbstractEventPopup extends AbstractPage {
         WebElement createEventEndDate = driver.findElement(By.xpath(CREATE_EVENT_END_DATE));
         action.click(createEventEndDate);
         action.clearAndSetValue(createEventEndDate, endDate);
+        action.click(createEventPopupTitle);
     }
 
     public void setEndHourCreateEventForm(final String endHour) {
         WebElement createEventStartHour = driver.findElement(By.xpath(CREATE_EVENT_END_HOUR));
         action.click(createEventStartHour);
         action.clearAndSetValue(createEventStartHour, endHour);
+        action.click(createEventPopupTitle);
     }
 
     public void setTitleAddCreateEventForm(final String title) {
         action.clearAndSetValue(createEventTitleTextField, title);
+        action.click(createEventPopupTitle);
     }
 
     private void setDescriptionCreateEventForm(final String description) {
         driver.switchTo().frame("edit-description_ifr");
-        action.click(createEventDescriptionTextField);
         action.clearAndSetValue(createEventDescriptionTextField, description);
         driver.switchTo().defaultContent();
     }
