@@ -10,12 +10,10 @@ public class Discussions extends AbstractPage {
 
     public static final String XPATH_UPDATE_TEXT = "//a[text()='%s']";
     public static final String DELETE_BUTTON = "//div[@class='submit-buttons']/child::span";
+    public static final String XPATH_DISCUSSION_NAME = "//a[text()='%s']";
 
     @FindBy(css = "span.create-new")
     private WebElement createDiscussionButton;
-
-    @FindBy(css = "a.discussion-title")
-    private WebElement discussionName;
 
     @FindBy(css = "a.delete-discussion")
     private WebElement deleteDiscussionButton;
@@ -38,8 +36,9 @@ public class Discussions extends AbstractPage {
         return action.isElementDisplayedOnScreen(By.cssSelector("a.discussion-title"));
     }
 
-    public Discussion joinDiscussion() {
+    public Discussion joinDiscussion(final String discTitle) {
 
+        WebElement discussionName = driver.findElement(By.xpath(String.format(XPATH_DISCUSSION_NAME, discTitle)));
         discussionName.click();
         return new Discussion();
     }

@@ -1,27 +1,24 @@
-package org.example.schoology.pages.resources;
+package org.example.schoology.pages.event;
 
 import org.example.core.ui.AbstractPage;
-import org.example.schoology.pages.Resources;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 /**
- * <h1>Delete Resource Popup</h1>
- * This class represents a Delete Resource Popup.
+ * <h1>Delete Event Popup</h1>
+ * This class represents a Delete Event Popup.
  * This class contains all the related object elements and actions for the mentioned page.
  *
  * @author  Miguel Tancara
  * @version 1.0
- * @since   2020-07-08
+ * @since   2020-07-13
  */
-public class DeleteResourcePopup extends AbstractPage {
-
+public class DeleteEventPopup extends AbstractPage {
 
     @FindBy(css = "input[value='Delete']")
     private WebElement deleteButton;
 
-    public Resources clickDeleteButton() {
+    public void clickDeleteButton() {
         action.click(deleteButton);
-        return new Resources();
     }
 }

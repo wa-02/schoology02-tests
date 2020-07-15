@@ -16,7 +16,7 @@ Feature: Group Discussion feature
     And I create a discussion with:
       | title        | testDiscussion to update  |
       | description  | test discussion  |
-    And I join to the created discussion
+    And I join to "testDiscussion to update" created discussion
     And I write "a Comment"
     And I click on edit the comment
     And I update a comment with "a comment updated"

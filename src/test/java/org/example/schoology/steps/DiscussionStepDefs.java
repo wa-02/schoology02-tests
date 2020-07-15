@@ -42,9 +42,9 @@ public class DiscussionStepDefs {
 
     }
 
-    @And("I join to the created discussion")
-    public void iJoinTheCreatedDiscussion() {
-        discussion = discussions.joinDiscussion();
+    @And("I join to {string} created discussion")
+    public void iJoinTheCreatedDiscussion(final String discussionName) {
+        discussion = discussions.joinDiscussion(discussionName);
 
     }
 
