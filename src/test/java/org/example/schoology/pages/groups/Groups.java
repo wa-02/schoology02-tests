@@ -35,6 +35,12 @@ public class Groups extends ViewList {
     @FindBy(css = "span[class='enrollment-code']")
     private WebElement accessCode;
 
+    @FindBy(css = "ul[style=\"display: block;\"] .action-archive")
+    private WebElement archiveGroup;
+
+    @FindBy(css = "ul[style=\"display: block;\"] .action-restore")
+    private WebElement restoreGroup;
+
     public CreateGroupPopup clickCreateGroupButton() {
 
         createGroupButton.click();
@@ -111,7 +117,7 @@ public class Groups extends ViewList {
         js.executeScript("arguments[0].scrollIntoView();", groupActionsButton);
 
         wait.until(ExpectedConditions.visibilityOf(groupActionsButton));
-        groupActionsButton.click();
+        action.click(groupActionsButton);
         driver.findElement(By.xpath(String.format(GROUP_BY_NAME, "Add Folder"))).click();
         return new CreateFolderPopup();
 
@@ -123,5 +129,36 @@ public class Groups extends ViewList {
 
     public void clickLeaveGroup() {
         driver.findElement(By.xpath(String.format(GROUP_BY_NAME, "Leave this group"))).click();
+    }
+
+    public ArchiveGroupPopup clickArchiveGroup(final String groupName) {
+        WebElement groupActionsButton = driver.findElement(By.xpath(String.format(GROUP_ACTIONS_BUTTON,
+                groupName)));
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView();", groupActionsButton);
+
+        action.click(groupActionsButton);
+        archiveGroup.click();
+        return new ArchiveGroupPopup();
+    }
+
+    public void clickArchivedTab() {
+        driver.findElement(By.xpath(String.format(GROUP_BY_NAME, "Archived"))).click();
+    }
+
+    public void clickCurrentTab() {
+        driver.findElement(By.xpath(String.format(GROUP_BY_NAME, "Current"))).click();
+    }
+
+    public RestoreGroupPopup clickRestoreGroup(final String groupName) {
+        WebElement groupActionsButton = driver.findElement(By.xpath(String.format(GROUP_ACTIONS_BUTTON,
+                groupName)));
+
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView();", groupActionsButton);
+
+        action.click(groupActionsButton);
+        restoreGroup.click();
+        return new RestoreGroupPopup();
     }
 }

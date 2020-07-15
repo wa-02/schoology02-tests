@@ -1,15 +1,15 @@
 Feature: Group
 
-  @deleteGroup
   Scenario: delete group
-    Given I log in as "GroupInstructor02" user
-    When I create a group with:
+    Given I log in as "CourseInstructor01" user
+    And I create a group with:
       | name        | groupTest         |
       | description | Description       |
       | privacy     | School            |
       | access      | Invite Only       |
       | category    | Musical Groups    |
-    Then I navigate to "Groups"
+    When I navigate to "Groups"
+    Then I delete the "groupTest" group
 
   @deleteGroup
   Scenario: Failed message to leave the group
