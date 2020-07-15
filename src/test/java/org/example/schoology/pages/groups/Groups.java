@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class Groups extends ViewList {
 
-    public static final String GROUP_ACTIONS_BUTTON = "//a[text()='%s']/ancestor::li//div[@role='button']";
+    public static final String GROUP_ACTIONS_BUTTON = "//a[text()='%s']/ancestor::li/descendant::div[@role='button']";
     public static final String SELECT_ACTIONS = "//a[text()='%s']/ancestor::li//ul//li[@class='action-edit']";
     public static final String GROUP_BY_NAME = "//a[text()='%s']";
     public static final String POST_UPDATE = "//p[text()='%s']";
