@@ -15,7 +15,7 @@ Feature: Group
   Scenario: Failed message to leave the group
     Given I log in as "GroupInstructor02" user
     When I create a group with:
-      | name        | SeleniumWebDriver |
+      | name        | SeleniumWebDriver_deleteGroup |
       | description | Description       |
       | privacy     | School            |
       | access      | Invite Only       |

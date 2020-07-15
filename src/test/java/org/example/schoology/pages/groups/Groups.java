@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class Groups extends ViewList {
 
-    public static final String GROUP_ACTIONS_BUTTON = "//a[text()='%s']/ancestor::li//div[@href='#']";
+    public static final String GROUP_ACTIONS_BUTTON = "//a[text()='%s']/ancestor::li/descendant::div[@role='button']";
     public static final String SELECT_ACTIONS = "//a[text()='%s']/ancestor::li//ul//li[@class='action-edit']";
     public static final String GROUP_BY_NAME = "//a[text()='%s']";
     public static final String POST_UPDATE = "//p[text()='%s']";
@@ -42,18 +42,19 @@ public class Groups extends ViewList {
     private WebElement restoreGroup;
 
     public CreateGroupPopup clickCreateGroupButton() {
+
         createGroupButton.click();
         return new CreateGroupPopup();
     }
 
     public EditGroupPopup clickEditGroup(final String groupName) {
         WebElement groupActionsButton = driver.findElement(By.xpath(String.format(GROUP_ACTIONS_BUTTON, groupName)));
-        // Scroll
+
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].scrollIntoView();", groupActionsButton);
 
-        wait.until(ExpectedConditions.visibilityOf(groupActionsButton));
-        groupActionsButton.click();
+        action.click(groupActionsButton);
+
         driver.findElement(By.xpath(String.format(SELECT_ACTIONS, groupName))).click();
         return new EditGroupPopup();
     }
@@ -63,7 +64,7 @@ public class Groups extends ViewList {
     }
 
     public CreateDiscussionPopup clickDiscussionsList() {
-        discussionMenu.click();
+        action.click(discussionMenu);
         return new CreateDiscussionPopup();
     }
 
@@ -74,8 +75,10 @@ public class Groups extends ViewList {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].scrollIntoView();", groupActionsButton);
 
-        groupActionsButton.click();
-        deleteGroup.click();
+        action.click(groupActionsButton);
+
+        action.click(deleteGroup);
+
         return new DeleteGroupPopup();
     }
 

@@ -22,6 +22,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
  * @since   2020-07-08
  */
 public class Resources extends AbstractPage {
+
     public static final String ADD_RESOURCE_ACTIONS_BUTTON = "//div[@id='toolbar-add']/child::div[@role='button']";
     public static final String RESOURCE_ACTIONS_BUTTON = "//a[text()='%s']/parent::td/following-sibling::td"
             + "/descendant::div[@role='button']";

@@ -17,7 +17,7 @@ Feature: Group Discussion feature
     And I create a discussion with:
       | title        | testDiscussion_comment_1   |
       | description  | test discussion  |
-    And I join to the created discussion
+    And I join to "testDiscussion_comment_1" created discussion
     And I write "a Comment"
     Then A new comment from Trainer "Course Instructor01" is displayed
     And the comment displayed is "a Comment"

@@ -2,6 +2,8 @@ package org.example.schoology.pages;
 
 import org.example.core.ui.AbstractPage;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 public class Home extends AbstractPage {
 
@@ -12,6 +14,12 @@ public class Home extends AbstractPage {
      * @param menuName {courses or groups}
      * @return {@link SubMenu}
      */
+
+    @FindBy(css = "[data-sgy-sitenav='calendar']")
+    private WebElement calendarMenuOption;
+    public static final String CREATED_EVENT_LINK = "//a[text()='%s']";
+
+
 
     public SubMenu clickMenu(final String menuName) {
         action.click(By.xpath(String.format("//span[text()='%s']/parent::button", menuName)));
@@ -36,4 +44,19 @@ public class Home extends AbstractPage {
         selectAccountOption("Logout");
         return new Login();
     }
+
+    public Calendar clickCalendarMenuOption() {
+        driver.navigate().to("https://app.schoology.com/calendar/");
+        return new Calendar();
+    }
+
+    public boolean resourceItemExist(final String eventName) {
+        return action.isElementDisplayedOnScreen(By.xpath(String.format(CREATED_EVENT_LINK, eventName)));
+    }
+
+    public EventDetails clickOnEventDetails(final String eventName) {
+        action.click(By.xpath(String.format(CREATED_EVENT_LINK, eventName)));
+        return new EventDetails();
+    }
+
 }
