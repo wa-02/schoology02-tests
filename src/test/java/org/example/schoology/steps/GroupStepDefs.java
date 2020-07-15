@@ -11,11 +11,7 @@ import org.example.core.ui.SharedDriver;
 import org.example.schoology.pages.Home;
 import org.example.schoology.pages.SubMenu;
 import org.example.schoology.pages.ViewList;
-import org.example.schoology.pages.groups.CreateGroupPopup;
-import org.example.schoology.pages.groups.EditGroupPopup;
-import org.example.schoology.pages.groups.CreateFolderPopup;
-import org.example.schoology.pages.groups.Group;
-import org.example.schoology.pages.groups.Groups;
+import org.example.schoology.pages.groups.*;
 import org.testng.asserts.Assertion;
 
 public class GroupStepDefs {
@@ -47,6 +43,7 @@ public class GroupStepDefs {
     public void iEditTheGroupWith(final String name, final Map<String, String> datatable) {
         EditGroupPopup editGroupPopup = groups.clickEditGroup(name);
         editGroupPopup.edit(datatable);
+        context.setContext("GroupKey", datatable.get("name"));
     }
 
     @And("I should see a group with {string} as a name")
@@ -106,5 +103,33 @@ public class GroupStepDefs {
     @And("I should see the a message:")
     public void iShouldSeeTheAMessage(final String message) {
         assertion.assertEquals(message, new ViewList().getErrorMessage(), "Message banner");
+    }
+
+    @And("I archive the {string} group")
+    public void iArchiveTheGroup(final String groupName) {
+        ArchiveGroupPopup archiveGroupPopup = new Groups().clickArchiveGroup(groupName);
+        archiveGroupPopup.clickArchiveButton();
+    }
+
+    @Then("I navigate to Archive tab")
+    public void iNavigateToArchiveTab() {
+        groups.clickArchivedTab();
+    }
+
+    @And("I delete the {string} group")
+    public void iDeleteTheGroup(final String groupName) {
+        DeleteGroupPopup deleteGroupPopup = new Groups().clickDeleteGroup(groupName);
+        deleteGroupPopup.clickDeleteButton();
+    }
+
+    @Then("I restore the {string} group")
+    public void iRestoreTheGroup(final String groupName) {
+        RestoreGroupPopup restoreGroupPopup  = new Groups().clickRestoreGroup(groupName);
+        restoreGroupPopup.clickRestoreButton();
+    }
+
+    @And("I navigate to Current tab")
+    public void iNavigateToCurrentTab() {
+        groups.clickCurrentTab();
     }
 }
