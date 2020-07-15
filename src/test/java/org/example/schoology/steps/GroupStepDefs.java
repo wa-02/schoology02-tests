@@ -47,6 +47,7 @@ public class GroupStepDefs {
     public void iEditTheGroupWith(final String name, final Map<String, String> datatable) {
         EditGroupPopup editGroupPopup = groups.clickEditGroup(name);
         editGroupPopup.edit(datatable);
+        context.setContext("GroupKey", datatable.get("name"));
     }
 
     @And("I should see a group with {string} as a name")
