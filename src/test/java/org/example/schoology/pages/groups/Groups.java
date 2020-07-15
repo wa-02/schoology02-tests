@@ -117,7 +117,7 @@ public class Groups extends ViewList {
         js.executeScript("arguments[0].scrollIntoView();", groupActionsButton);
 
         wait.until(ExpectedConditions.visibilityOf(groupActionsButton));
-        groupActionsButton.click();
+        action.click(groupActionsButton);
         driver.findElement(By.xpath(String.format(GROUP_BY_NAME, "Add Folder"))).click();
         return new CreateFolderPopup();
 
@@ -137,7 +137,7 @@ public class Groups extends ViewList {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].scrollIntoView();", groupActionsButton);
 
-        groupActionsButton.click();
+        action.click(groupActionsButton);
         archiveGroup.click();
         return new ArchiveGroupPopup();
     }
@@ -157,7 +157,7 @@ public class Groups extends ViewList {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].scrollIntoView();", groupActionsButton);
 
-        groupActionsButton.click();
+        action.click(groupActionsButton);
         restoreGroup.click();
         return new RestoreGroupPopup();
     }

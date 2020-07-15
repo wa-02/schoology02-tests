@@ -9,7 +9,7 @@ Feature: Group
       | access      | Invite Only       |
       | category    | Musical Groups    |
     When I navigate to "Groups"
-    Then I delete the "SeleniumWebDriver" group
+    Then I delete the "groupTest" group
 
   @deleteGroup
   Scenario: Failed message to leave the group
